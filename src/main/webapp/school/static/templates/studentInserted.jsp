@@ -5,6 +5,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/studentInserted.css">
   <title>Student Inserted Successfully</title>
 </head>
 <body>

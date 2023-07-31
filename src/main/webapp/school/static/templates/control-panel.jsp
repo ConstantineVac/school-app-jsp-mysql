@@ -21,6 +21,10 @@
       <i class="fas fa-user-graduate"></i>
       Students Menu
     </a>
+    <a href="${pageContext.request.contextPath}/school/static/templates/citiesmenu.jsp" class="control-btn">
+      <i class="fas fa-city"></i>
+      Cities Menu
+    </a>
   </div>
 </div>
 </body>

@@ -5,6 +5,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/school/static/css/teachers.css">
   <title>Teachers Found</title>
 
 </head>

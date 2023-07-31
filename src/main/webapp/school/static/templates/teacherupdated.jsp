@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/school/static/css/teacherUpdated.css">
+<title>Teacher Updated Successfully</title>
 </head>
 <body>
 	<h1>Νέα Στοιχεία Teacher</h1>

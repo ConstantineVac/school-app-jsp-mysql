@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Teacher Update</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/school/static/css/teacherupdate.css">
+	<title>Teacher Update</title>
 </head>
 <body>
 	<div>
