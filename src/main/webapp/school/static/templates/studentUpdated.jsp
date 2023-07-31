@@ -5,6 +5,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/school/static/css/studentUpdated.css">
   <title>Student Updated Successfully</title>
 </head>
 <body>

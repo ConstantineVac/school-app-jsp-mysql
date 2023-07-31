@@ -5,9 +5,12 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/school/static/css/studentUpdate.css">
   <title>Update Student</title>
 </head>
 <body>
+
+<h1 class="header">Updating Student: </h1>
 <form action="${pageContext.request.contextPath}/schoolapp/updateStudent" method="post">
 
   <label for="studentID">Student ID</label>
