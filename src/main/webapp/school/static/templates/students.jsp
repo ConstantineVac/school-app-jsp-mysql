@@ -9,48 +9,46 @@
   <title>Students Found</title>
 </head>
 <body>
-<div>
-  <table>
-    <tr>
-      <th>ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Gender</th>
-      <th>Birthdate</th>
-      <th>Delete</th>
-      <th>Update</th>
-    </tr>
-    <c:forEach var="student" items="${requestScope.students}">
+  <div>
+    <table>
       <tr>
-        <td>${student.id}</td>
-        <td>${student.firstname}</td>
-        <td>${student.lastname}</td>
-        <td>${student.gender}</td>
-        <td>${student.birthdate}</td>
-        <td>
-          <a href="${pageContext.request.contextPath}/schoolapp/deleteStudent?id=${student.id}&firstname=${student.firstname}&lastname=${student.lastname}"
-             onclick="return confirm('Are you sure you want to delete this student?')">Delete</a>
-        </td>
-        <td>
-          <a href="${pageContext.request.contextPath}/schoolapp/updateStudent?id=${student.id}&firstname=${student.firstname}&lastname=${student.lastname}&gender=${student.gender}&birthdate=${student.birthdate}">Update</a>
-        </td>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Gender</th>
+        <th>Birthdate</th>
+        <th>Delete</th>
+        <th>Update</th>
       </tr>
-    </c:forEach>
-  </table>
-</div>
+      <c:forEach var="student" items="${requestScope.students}">
+        <tr>
+          <td>${student.id}</td>
+          <td>${student.firstname}</td>
+          <td>${student.lastname}</td>
+          <td>${student.gender}</td>
+          <td>${student.birthdate}</td>
+          <td>
+            <a href="${pageContext.request.contextPath}/schoolapp/deleteStudent?id=${student.id}&firstname=${student.firstname}&lastname=${student.lastname}"
+               onclick="return confirm('Are you sure you want to delete this student?')">Delete</a>
+          </td>
+          <td>
+            <a href="${pageContext.request.contextPath}/schoolapp/updateStudent?id=${student.id}&firstname=${student.firstname}&lastname=${student.lastname}&gender=${student.gender}&birthdate=${student.birthdate}">Update</a>
+          </td>
+        </tr>
+      </c:forEach>
+    </table>
+  </div>
 
-<div>
-  <c:if test="${requestScope.deleteAPIError}">
-    <p>${requestScope.message}</p>
-  </c:if>
-</div>
-
-<div>
-  <c:if test="${requestScope.updateAPIError}">
-    <p>Something went wrong in Update</p>
-  </c:if>
-</div>
-
+  <div>
+    <c:if test="${requestScope.deleteAPIError}">
+      <p>${requestScope.message}</p>
+    </c:if>
+  </div>
+  <div>
+    <c:if test="${requestScope.updateAPIError}">
+      <p>Something went wrong in Update</p>
+    </c:if>
+  </div>
 </body>
 </html>
 
