@@ -57,6 +57,7 @@ public class StudentDAOImpl implements IStudentDAO{
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql);) {
+
             int id = student.getId();
             String firstname = student.getFirstname();
             String lastname = student.getLastname();

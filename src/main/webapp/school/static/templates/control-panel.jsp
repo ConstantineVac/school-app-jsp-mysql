@@ -25,6 +25,14 @@
       <i class="fas fa-city"></i>
       Cities Menu
     </a>
+    <a href="${pageContext.request.contextPath}/school/static/templates/specialtymenu.jsp" class="control-btn">
+      <i class="fas fa-certificate"></i>
+      Specialty Menu
+    </a>
+    <a href="${pageContext.request.contextPath}/school/static/templates/meetingsmenu.jsp" class="control-btn">
+      <i class="fas fa-calendar-alt"></i>
+      Meetings Menu
+    </a>
   </div>
 </div>
 </body>

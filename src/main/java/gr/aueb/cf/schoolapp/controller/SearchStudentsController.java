@@ -25,10 +25,7 @@ public class SearchStudentsController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-//        request.setAttribute("isError", false);
-//        request.setAttribute("error", "");
-//        request.setAttribute("studentsNotFound", false);
-        request.getRequestDispatcher("/schoolapp/menu-students")
+        request.getRequestDispatcher("/schoolapp/menu")
                 .forward(request, response);
     }
 
@@ -42,16 +39,18 @@ public class SearchStudentsController extends HttpServlet {
             List<Student> students = studentService.getStudentsByLastname(lastname);
             if (students.size() == 0) {
                 request.setAttribute("studentsNotFound", true);
-                request.getRequestDispatcher("/schoolapp/students/menu")
+                request.getRequestDispatcher("/schoolapp/menu")
                         .forward(request, response);
             }
             request.setAttribute("students", students);
-            request.getRequestDispatcher("/school/static/templates/students.jsp").forward(request, response);
+            request.getRequestDispatcher("/school/static/templates/students.jsp")
+                    .forward(request, response);
         } catch (StudentDAOException e) {
             message = e.getMessage();
             request.setAttribute("isError", true);
             request.setAttribute("errorMessage", message);
-            request.getRequestDispatcher("/school/static/templates/studentsmenu.jsp").forward(request, response);
+            request.getRequestDispatcher("/school/static/templates/studentsmenu.jsp")
+                    .forward(request, response);
         }
     }
 }
