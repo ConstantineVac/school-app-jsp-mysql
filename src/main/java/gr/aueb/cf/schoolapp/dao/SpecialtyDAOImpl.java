@@ -16,7 +16,7 @@ public class SpecialtyDAOImpl implements ISpecialtyDAO {
 
     @Override
     public Optional<List<Specialty>> getSpecialtyByName(String name) throws SpecialtyDAOException {
-        String sql = "SELECT * FROM SPECIALTIES WHERE NAME LIKE ?";
+        String sql = "SELECT * FROM SPECIALTIES WHERE SPECIALTY LIKE ?";
         List<Specialty> specialties = new ArrayList<>();
 
         try (Connection connection = DBUtil.getConnection();
@@ -27,7 +27,7 @@ public class SpecialtyDAOImpl implements ISpecialtyDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                Specialty specialty = new Specialty(rs.getInt("ID"), rs.getString("NAME"));
+                Specialty specialty = new Specialty(rs.getInt("ID"), rs.getString("SPECIALTY"));
                 specialties.add(specialty);
             }
         } catch (SQLException e) {
@@ -54,7 +54,7 @@ public class SpecialtyDAOImpl implements ISpecialtyDAO {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                specialty = new Specialty(rs.getInt("ID"), rs.getString("NAME"));
+                specialty = new Specialty(rs.getInt("ID"), rs.getString("SPECIALTY"));
             }
         } catch (SQLException e) {
             throw new SpecialtyDAOException("SQL Error while retrieving specialty with ID: " + id);
@@ -64,7 +64,7 @@ public class SpecialtyDAOImpl implements ISpecialtyDAO {
 
     @Override
     public Specialty insert(Specialty specialty) throws SpecialtyDAOException {
-        String sql = "INSERT INTO SPECIALTIES (NAME) VALUES (?)";
+        String sql = "INSERT INTO SPECIALTIES (SPECIALTY) VALUES (?)";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -94,7 +94,7 @@ public class SpecialtyDAOImpl implements ISpecialtyDAO {
 
     @Override
     public Specialty update(Specialty specialty) throws SpecialtyDAOException {
-        String sql = "UPDATE SPECIALTIES SET NAME = ? WHERE ID = ?";
+        String sql = "UPDATE SPECIALTIES SET SPECIALTY = ? WHERE ID = ?";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql);) {
@@ -140,7 +140,7 @@ public class SpecialtyDAOImpl implements ISpecialtyDAO {
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                Specialty specialty = new Specialty(rs.getInt("ID"), rs.getString("NAME"));
+                Specialty specialty = new Specialty(rs.getInt("ID"), rs.getString("SPECIALTY"));
                 specialties.add(specialty);
             }
 

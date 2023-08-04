@@ -24,7 +24,7 @@ public class SearchSpecialtyController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/schoolapp/specialties/menu")
+        request.getRequestDispatcher("/schoolapp/menu")
                 .forward(request, response);
     }
 
@@ -37,7 +37,7 @@ public class SearchSpecialtyController extends HttpServlet {
             List<Specialty> specialties = specialtyService.getSpecialtiesBySpecialtyName(name);
             if (specialties.size() == 0) {
                 request.setAttribute("specialtyNotFound", true);
-                request.getRequestDispatcher("/schoolapp/specialties/menu")
+                request.getRequestDispatcher("/schoolapp/menu")
                         .forward(request, response);
             }
             request.setAttribute("specialties", specialties);

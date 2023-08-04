@@ -5,6 +5,7 @@ body {
     padding: 0;
 }
 
+
 h1 {
     text-align: center;
     padding: 20px;
@@ -18,6 +19,12 @@ p {
     text-align: center;
 }
 
+/* Container for the button */
+.container {
+    position: relative; /* This is necessary for positioning the button */
+}
+
+/* Button style */
 a {
     display: inline-block;
     padding: 10px 20px;
@@ -26,7 +33,9 @@ a {
     color: #fff;
     border-radius: 5px;
     text-align: center;
-    margin: 10px auto;
+    position: absolute;
+    bottom: 10px; /* Distance from the bottom of the container */
+    right: 10px; /* Distance from the right of the container */
 }
 
 a:hover {

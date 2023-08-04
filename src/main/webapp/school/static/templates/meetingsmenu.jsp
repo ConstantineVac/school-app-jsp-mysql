@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Meetings Menu</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/school/static/css/meetingsmenu.css">
 </head>
 <body>
 <div class="center">
@@ -53,6 +54,11 @@
   </c:if>
 
   <p>${requestScope.error}</p>
+</div>
+<div class="center">
+  <a href="${pageContext.request.contextPath}/school/static/templates/control-panel.jsp" class="back-btn">
+    <i class="fas fa-arrow-left"></i> Back to Control Panel
+  </a>
 </div>
 </body>
 </html>

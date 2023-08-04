@@ -25,7 +25,7 @@
       <i class="fas fa-city"></i>
       Cities Menu
     </a>
-    <a href="${pageContext.request.contextPath}/school/static/templates/specialtymenu.jsp" class="control-btn">
+    <a href="${pageContext.request.contextPath}/school/static/templates/specialtiesmenu.jsp" class="control-btn">
       <i class="fas fa-certificate"></i>
       Specialty Menu
     </a>

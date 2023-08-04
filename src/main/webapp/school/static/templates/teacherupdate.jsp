@@ -11,11 +11,11 @@
 <body>
 	<div>
 		<form method="POST" action="${pageContext.request.contextPath}/schoolapp/update">
-			<label for="tid">Κωδικός</label>
+			<label for="tid">ID</label>
 			<input id="tid" type="text" name="id" value="${param.id}" readonly><br>
-			<label for="firstname">Όνομα</label>
+			<label for="firstname">Firstname</label>
 			<input id="firstname" type="text" name="firstname" value="${param.firstname}"><br>
-			<label for="lastname">Επώνυμο</label>
+			<label for="lastname">Lastname</label>
 			<input id="lastname" type="text" name="lastname" value="${param.lastname}"><br><br>
 			<button type="submit">Update Teacher</button>
 		</form>	

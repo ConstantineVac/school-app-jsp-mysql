@@ -9,11 +9,14 @@
 <title>Teacher Updated Successfully</title>
 </head>
 <body>
-	<h1>Νέα Στοιχεία Teacher</h1>
-	<p>teacher ${requestScope.teacher.firstname}</p>
-	<p>teacher ${requestScope.teacher.lastname}</p>
-	<a href="${pageContext.request.contextPath}/school/static/templates/teachersmenu.jsp">Επιστροφή</a>
+	<h1>Information Updated</h1>
+	<p>Firstname:  ${requestScope.teacher.firstname}</p>
+	<p>Lastname:  ${requestScope.teacher.lastname}</p>
 	<br>
 	<p>${requestScope.message}</p>
+	<br>
+	<div class="container"> <!-- Add the container -->
+		<a href="${pageContext.request.contextPath}/school/static/templates/teachersmenu.jsp">Return</a>
+	</div>
 </body>
 </html>

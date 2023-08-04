@@ -7,8 +7,10 @@
 .container-fluid {
     width: 50%;   
     margin: 10px auto;
-    background-color: cornflowerblue;
+    background-color: #13b608;
     padding: 20px 0;
+    border: 1px solid #ffffff;
+    border-radius: 30px;
 }
 
 .container {
@@ -17,7 +19,7 @@
     margin: 0 auto;
     text-align: center;
     background-color: #fff;
-    border-radius: 5px;
+    border-radius: 30px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -34,7 +36,7 @@
     width: 70%;
     height: 40px;
     background-color: #faf4f4;
-    border-radius: 5px;
+    border-radius: 10px;
     border-width: 0;
     padding-left: 10px;
 }
@@ -42,8 +44,8 @@
 .container button[type="submit"] {
     width: 90%;
     height: 40px;
-    background-color: cornflowerblue;
-    border-radius: 2px;
+    background-color: #13b608;
+    border-radius: 10px;
     border-width: 0;
     color: white;
     font-size: 1rem;

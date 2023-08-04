@@ -12,6 +12,7 @@ public class MenuController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("specialtyNotFound", false);
         request.setAttribute("MeetingNotFound", false);
         request.setAttribute("cityNotFound", false);
         request.setAttribute("studentsNotFound", false);

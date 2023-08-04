@@ -57,7 +57,7 @@
     <p>${requestScope.specialtyError}</p>
 </div>
 <div class="center">
-    <a href="${pageContext.request.contextPath}/school/static/templates/controlPanel.jsp" class="back-btn">
+    <a href="${pageContext.request.contextPath}/school/static/templates/control-panel.jsp" class="back-btn">
         <i class="fas fa-arrow-left"></i> Back to Control Panel
     </a>
 </div>
