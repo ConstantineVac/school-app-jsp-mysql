@@ -44,17 +44,17 @@
 </div>
 
 <div class="center">
-    <c:if test="${requestScope.specialtySqlError}">
-        <p>${requestScope.specialtyMessage}</p>
+    <c:if test="${requestScope.sqlError}">
+        <p>${requestScope.message}</p>
     </c:if>
 </div>
 
 <div class="center">
-    <c:if test="${requestScope.specialtiesNotFound}">
-        <p>No specialties found</p>
+    <c:if test="${requestScope.specialtyNotFound}">
+        <p>No specialties found !</p>
     </c:if>
 
-    <p>${requestScope.specialtyError}</p>
+    <p>${requestScope.error}</p>
 </div>
 <div class="center">
     <a href="${pageContext.request.contextPath}/school/static/templates/control-panel.jsp" class="back-btn">

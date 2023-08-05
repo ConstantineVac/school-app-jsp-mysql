@@ -32,21 +32,22 @@ public class SearchSpecialtyController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name").trim();
 
-        String message = "";
         try {
             List<Specialty> specialties = specialtyService.getSpecialtiesBySpecialtyName(name);
-            if (specialties.size() == 0) {
+            if (specialties.isEmpty()) {
                 request.setAttribute("specialtyNotFound", true);
-                request.getRequestDispatcher("/schoolapp/menu")
+                request.getRequestDispatcher("/school/static/templates/specialtiesmenu.jsp")
                         .forward(request, response);
             }
             request.setAttribute("specialties", specialties);
-            request.getRequestDispatcher("/school/static/templates/specialties.jsp").forward(request, response);
+            request.getRequestDispatcher("/school/static/templates/specialties.jsp")
+                    .forward(request, response);
         } catch (SpecialtyDAOException | SpecialtyNotFoundException e) {
-            message = e.getMessage();
-            request.setAttribute("isError", true);
-            request.setAttribute("errorMessage", message);
-            request.getRequestDispatcher("/school/static/templates/specialtiesmenu.jsp").forward(request, response);
+            String message = e.getMessage();
+            request.setAttribute("sqlError", true);
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("/school/static/templates/specialtiesmenu.jsp")
+                    .forward(request, response);
         }
     }
 }
