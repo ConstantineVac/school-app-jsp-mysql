@@ -24,9 +24,6 @@ public class InsertTeacherController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.setAttribute("teachersNotFound", false);
-//        request.setAttribute("isError", false);
-//        request.setAttribute("error", "");
         request.getRequestDispatcher("/schoolapp/menu").forward(request, response);
     }
 
@@ -36,17 +33,20 @@ public class InsertTeacherController extends HttpServlet {
 
         String firstname = request.getParameter("firstname").trim();
         String lastname = request.getParameter("lastname").trim();
+        int specialtyId = Integer.parseInt(request.getParameter("specialtyId").trim());
 
         TeacherInsertDTO teacherInsertDTO = new TeacherInsertDTO();
         teacherInsertDTO.setFirstname(firstname);
         teacherInsertDTO.setLastname(lastname);
+        teacherInsertDTO.setSpecialtyId(specialtyId);
 
         try {
             Map<String, String> errors = TeacherValidator.validate(teacherInsertDTO);
             if (!errors.isEmpty()) {
                 String firstnameMessage = (errors.get("firstname") != null) ? "Firstname: " + errors.get("firstname") : "";
                 String lastnameMessage = (errors.get("lastname") != null) ? "Lastname: " + errors.get("lastname") : "";
-                request.setAttribute("error", firstnameMessage + " " + lastnameMessage);
+                String specialtyIdMessage = (errors.get("specialtyId") != null) ? "Specialty ID: " + errors.get("specialtyiD") : "";
+                request.setAttribute("error", firstnameMessage + " " + lastnameMessage + " " + specialtyIdMessage);
                 request.getRequestDispatcher("/school/static/templates/teachersmenu.jsp").forward(request, response);
                 return;
             }
@@ -59,6 +59,5 @@ public class InsertTeacherController extends HttpServlet {
             request.setAttribute("message", e.getMessage());
             request.getRequestDispatcher("/schoolapp/menu").forward(request, response);
         }
-
     }
 }

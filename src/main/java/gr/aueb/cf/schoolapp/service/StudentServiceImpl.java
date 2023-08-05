@@ -98,10 +98,10 @@ public class StudentServiceImpl implements IStudentService {
         }
 
     private Student map(StudentInsertDTO dto) {
-        return new Student(null, dto.getFirstname(), dto.getLastname(), dto.getGender(), dto.getBirthdate());
+        return new Student(null, dto.getFirstname(), dto.getLastname(), dto.getGender(), dto.getBirthdate(), dto.getCityId());
     }
 
     private Student map(StudentUpdateDTO dto) {
-        return new Student(dto.getId(), dto.getFirstname(), dto.getLastname(), dto.getGender(), dto.getBirthdate());
+        return new Student(dto.getId(), dto.getFirstname(), dto.getLastname(), dto.getGender(), dto.getBirthdate(), dto.getCityId());
     }
 }

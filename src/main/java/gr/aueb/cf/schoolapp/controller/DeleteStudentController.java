@@ -28,6 +28,7 @@ public class DeleteStudentController extends HttpServlet {
         String lastname = request.getParameter("lastname");
         String gender = request.getParameter("gender");
         String birthdateStr = request.getParameter("birthdate");
+        int cityId = Integer.parseInt(request.getParameter("cityId"));
 
         // Convert birthdate to java.sql.Date format
         java.sql.Date birthdate = null;
@@ -49,6 +50,7 @@ public class DeleteStudentController extends HttpServlet {
         studentDTO.setLastname(lastname);
         studentDTO.setGender(gender);
         studentDTO.setBirthdate(birthdate);
+        studentDTO.setCityId(cityId);
 
         try {
             studentService.deleteStudent(id);

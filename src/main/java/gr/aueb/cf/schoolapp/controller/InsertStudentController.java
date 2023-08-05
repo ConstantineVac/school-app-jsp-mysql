@@ -38,6 +38,7 @@ public class InsertStudentController extends HttpServlet {
         String lastname = request.getParameter("lastname").trim();
         String gender = request.getParameter("gender").trim();
         String birthdate = (request.getParameter("birthdate"));
+        int cityId = Integer.parseInt(request.getParameter("cityId"));
 
         StudentInsertDTO studentInsertDTO = new StudentInsertDTO();
 
@@ -45,15 +46,13 @@ public class InsertStudentController extends HttpServlet {
         studentInsertDTO.setLastname(lastname);
         studentInsertDTO.setGender(gender);
         studentInsertDTO.setBirthdate(Date.valueOf(birthdate));
+        studentInsertDTO.setCityId(cityId);
 
         try {
             Map<String, String> errors = StudentValidator.validate(studentInsertDTO);
             if (!errors.isEmpty()) {
-                //String idMessage = (errors.get("id") !=null) ? "ID:" + errors.get("id") : "";
                 String firstnameMessage = (errors.get("firstname") != null) ? "Firstname: " + errors.get("firstname") : "";
                 String lastnameMessage = (errors.get("lastname") != null) ? "Lastname: " + errors.get("lastname") : "";
-                String genderMessage = (errors.get("gender") != null) ? "Gender: " + errors.get("gender") : "";
-                String birthdateMessage = (errors.get("birthdate") != null) ? "Birthdate: " + errors.get("birthdate") : "";
                 request.setAttribute("error", firstnameMessage + " " + lastnameMessage);
                 request.getRequestDispatcher("/school/static/templates/studentsmenu.jsp").forward(request, response);
                 return;

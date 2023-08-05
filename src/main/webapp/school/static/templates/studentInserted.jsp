@@ -15,6 +15,7 @@
   <p>Last Name: ${requestScope.insertedStudent.lastname}</p>
   <p>Gender: ${requestScope.insertedStudent.gender}</p>
   <p>Birthdate: ${requestScope.insertedStudent.birthdate}</p>
+  <p>City ID: ${requestScope.insertedStudent.cityId}</p>
 </div>
 
 <div>

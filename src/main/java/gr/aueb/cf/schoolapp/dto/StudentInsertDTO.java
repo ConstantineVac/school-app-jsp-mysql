@@ -9,13 +9,16 @@ public class StudentInsertDTO {
     private String gender;
     private java.sql.Date birthdate;
 
+    private Integer cityId;
+
     public StudentInsertDTO() {}
 
-    public StudentInsertDTO(String firstname, String lastname, String gender, java.sql.Date birthdate) {
+    public StudentInsertDTO(String firstname, String lastname, String gender, java.sql.Date birthdate, Integer cityId) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.gender = gender;
         this.birthdate = birthdate;
+        this.cityId = cityId;
     }
 
     public String getFirstname() {
@@ -48,5 +51,14 @@ public class StudentInsertDTO {
 
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public Integer getCityId() {
+
+        return cityId;
+    }
+
+    public void setCityId(Integer cityId) {
+        this.cityId = cityId;
     }
 }

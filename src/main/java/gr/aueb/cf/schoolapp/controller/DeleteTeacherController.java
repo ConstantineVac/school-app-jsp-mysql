@@ -28,11 +28,13 @@ public class DeleteTeacherController extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
+		int specialtyId = Integer.parseInt(request.getParameter("specialtyId"));
 
 		TeacherDeleteDTO teacherDTO = new TeacherDeleteDTO();
 		teacherDTO.setId(id);
 		teacherDTO.setFirstname(firstname);
 		teacherDTO.setLastname(lastname);
+		teacherDTO.setSpecialtyId(specialtyId);
 		try {
 			teacherServ.deleteTeacher(id);
 			request.setAttribute("teacherDTO", teacherDTO);

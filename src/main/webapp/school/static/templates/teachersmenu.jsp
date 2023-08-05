@@ -38,6 +38,8 @@
                  class="insert rounded" placeholder="Last name" autofocus/><br>
           <input name="firstname" type="text" value="${requestScope.insertedteacher.firstname}"
                  class="insert rounded" placeholder="First name" autofocus/>
+          <input name="specialtyId" type="text" value="${requestScope.insertedteacher.specialtyId}"
+                 class="insert rounded" placeholder="Specialty ID" autofocus/>
           <br><br>
           <button class="search-btn rounded color-btn" type="submit">Insert</button>
         </form>

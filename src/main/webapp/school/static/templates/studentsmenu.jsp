@@ -39,6 +39,7 @@
         <input name="lastname" type="text" value="${requestScope.studentInserted.lastname}" class="insert rounded" placeholder="Lastname" autofocus/><br>
         <input name="gender" type="text" value="${requestScope.studentInserted.gender}" class="insert rounded" placeholder="Gender" autofocus/><br>
         <input name="birthdate" type="text" value="${requestScope.studentInserted.birthdate}" class="insert rounded" placeholder="Birthdate" autofocus/><br>
+        <input name="cityId" type="text" value="${requestScope.studentInserted.cityId}" class="insert rounded" placeholder="City ID" autofocus/><br>
         <br>
         <button class="search-btn rounded color-btn" type="submit">Insert</button>
       </form>

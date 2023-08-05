@@ -8,15 +8,17 @@ public class StudentUpdateDTO extends Base{
     private String lastname;
     private String gender;
     private java.sql.Date birthdate;
+    private Integer cityId;
 
     public StudentUpdateDTO() {}
 
-    public StudentUpdateDTO(Integer id, String firstname, String lastname, String gender, Date birthdate) {
+    public StudentUpdateDTO(Integer id, String firstname, String lastname, String gender, Date birthdate, Integer cityId) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.gender = gender;
         this.birthdate = birthdate;
+        this.cityId = cityId;
     }
 
     @Override
@@ -59,5 +61,13 @@ public class StudentUpdateDTO extends Base{
 
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public Integer getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(Integer cityId) {
+        this.cityId = cityId;
     }
 }

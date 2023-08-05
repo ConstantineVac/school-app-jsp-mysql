@@ -39,7 +39,7 @@ public class UpdateStudentController extends HttpServlet {
         String lastname = request.getParameter("lastname");
         String gender = request.getParameter("gender");
         String birthdateStr = request.getParameter("birthdate");
-
+        int cityId = Integer.parseInt(request.getParameter("cityId"));
 
         // Validate and convert birthdate to java.sql.Date format
         java.sql.Date birthdate = null;
@@ -61,6 +61,7 @@ public class UpdateStudentController extends HttpServlet {
         newStudentDTO.setLastname(lastname);
         newStudentDTO.setGender(gender);
         newStudentDTO.setBirthdate(birthdate);
+        newStudentDTO.setCityId(cityId);
         request.setAttribute("updatedStudent", newStudentDTO);
 
         try {

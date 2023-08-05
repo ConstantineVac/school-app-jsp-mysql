@@ -4,13 +4,15 @@ public class Teacher {
     private Integer id;
     private String firstname;
     private String lastname;
+    private Integer specialtyId;
 
     public Teacher() {}
 
-    public Teacher(Integer id, String firstname, String lastname) {
+    public Teacher(Integer id, String firstname, String lastname, Integer specialtyId) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.specialtyId = specialtyId;
     }
 
     public Integer getId() {
@@ -30,6 +32,14 @@ public class Teacher {
     }
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public Integer getSpecialtyId() {
+        return specialtyId;
+    }
+
+    public void setSpecialtyId(Integer specialtyId) {
+        this.specialtyId = specialtyId;
     }
 
     @Override

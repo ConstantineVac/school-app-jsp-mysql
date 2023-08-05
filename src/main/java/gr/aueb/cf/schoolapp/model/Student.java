@@ -9,16 +9,18 @@ public class Student {
     private String lastname;
     private String gender;
     private java.sql.Date birthdate;
+    private Integer cityId;
 
 
     public Student() {};
 
-    public Student(Integer id, String firstname, String lastname, String gender, Date birthdate) {
+    public Student(Integer id, String firstname, String lastname, String gender, Date birthdate, Integer cityId) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.gender = gender;
         this.birthdate = birthdate;
+        this.cityId = cityId;
     }
 
     public Integer getId() {
@@ -59,6 +61,14 @@ public class Student {
 
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public Integer getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(Integer cityId) {
+        this.cityId = cityId;
     }
 
     @Override

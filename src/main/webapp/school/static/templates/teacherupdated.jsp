@@ -12,6 +12,7 @@
 	<h1>Information Updated</h1>
 	<p>Firstname:  ${requestScope.teacher.firstname}</p>
 	<p>Lastname:  ${requestScope.teacher.lastname}</p>
+	<p>Specialty ID: ${requestScope.teacher.specialtyId}</p>
 	<br>
 	<p>${requestScope.message}</p>
 	<br>

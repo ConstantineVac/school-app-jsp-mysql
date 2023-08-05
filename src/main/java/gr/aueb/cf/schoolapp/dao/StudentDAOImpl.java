@@ -14,7 +14,7 @@ import java.util.List;
 public class StudentDAOImpl implements IStudentDAO{
     @Override
     public Student insert(Student student) throws StudentDAOException {
-        String sql = "INSERT INTO STUDENTS (FIRSTNAME, LASTNAME, GENDER, BIRTHDATE) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO STUDENTS (FIRSTNAME, LASTNAME, GENDER, BIRTHDATE, CITY_ID) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -23,12 +23,14 @@ public class StudentDAOImpl implements IStudentDAO{
             String lastname = student.getLastname();
             String gender = student.getGender();
             java.sql.Date birthdate = student.getBirthdate();
+            Integer cityId = student.getCityId();
 
 
             ps.setString(1, firstname);
             ps.setString(2, lastname);
             ps.setString(3, gender);
             ps.setDate(4, birthdate);
+            ps.setInt(5, cityId);
 
             DBUtil.beginTransaction();
             ps.executeUpdate();
@@ -53,7 +55,7 @@ public class StudentDAOImpl implements IStudentDAO{
 
     @Override
     public Student update(Student student) throws StudentDAOException {
-        String sql = "UPDATE STUDENTS SET FIRSTNAME = ?, LASTNAME = ?, GENDER = ?, BIRTHDATE = ? WHERE ID = ?";
+        String sql = "UPDATE STUDENTS SET FIRSTNAME = ?, LASTNAME = ?, GENDER = ?, BIRTHDATE = ?, CITY_ID = ? WHERE ID = ?";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql);) {
@@ -63,13 +65,15 @@ public class StudentDAOImpl implements IStudentDAO{
             String lastname = student.getLastname();
             String gender = student.getGender();
             java.sql.Date birthdate = student.getBirthdate();
+            Integer cityId = student.getCityId();
 
 
             ps.setString(1, firstname);
             ps.setString(2, lastname);
             ps.setString(3, gender);
             ps.setDate(4, birthdate);
-            ps.setInt(5, id);
+            ps.setInt(5, cityId);
+            ps.setInt(6, id);
 
 
             DBUtil.beginTransaction();
@@ -113,7 +117,7 @@ public class StudentDAOImpl implements IStudentDAO{
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                Student student = new Student(rs.getInt("ID"), rs.getString("FIRSTNAME"), rs.getString("LASTNAME"), rs.getString("GENDER"), rs.getDate("BIRTHDATE"));
+                Student student = new Student(rs.getInt("ID"), rs.getString("FIRSTNAME"), rs.getString("LASTNAME"), rs.getString("GENDER"), rs.getDate("BIRTHDATE"), rs.getInt("CITY_ID"));
                 students.add(student);
             }
         } catch (SQLException e1) {
@@ -135,7 +139,7 @@ public class StudentDAOImpl implements IStudentDAO{
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                student = new Student(rs.getInt("ID"), rs.getString("FIRSTNAME"), rs.getString("LASTNAME"), rs.getString("GENDER"), rs.getDate("BIRTHDATE"));
+                student = new Student(rs.getInt("ID"), rs.getString("FIRSTNAME"), rs.getString("LASTNAME"), rs.getString("GENDER"), rs.getDate("BIRTHDATE"), rs.getInt("CITY_ID"));
             }
         } catch (SQLException e1) {
             e1.printStackTrace();

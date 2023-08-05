@@ -24,17 +24,13 @@ public class SearchTeachersController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-//        request.setAttribute("isError", false);
-//        request.setAttribute("error", "");
-//        request.setAttribute("teachersNotFound", false);
         request.getRequestDispatcher("/schoolapp/menu")
                 .forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //response.setContentType("text/html; charset=UTF-8");
+        // response.setContentType("text/html; charset=UTF-8");
         String lastname = request.getParameter("lastname").trim();
 
         String message = "";

@@ -5,19 +5,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Επιτυχής Εισαγωγή</title>
+	<title>Teacher Inserted Successfully</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/school/static/css/teacherInserted.css">
 </head>
 <body>
 	<h1>Teacher inserted successfully</h1>
 	<div>
-		<p>${requestScope.insertedTeacher.id}</p>
-		<p>${requestScope.insertedTeacher.lastname}</p>
-		<p>${requestScope.insertedTeacher.firstname}</p>
+		<p>Teacher ID: ${requestScope.insertedTeacher.id}</p>
+		<p>Teacher's Lastname: ${requestScope.insertedTeacher.lastname}</p>
+		<p>Teacher's Firstname: ${requestScope.insertedTeacher.firstname}</p>
+		<p>Teacher's Specialty ID: ${requestScope.insertedTeacher.specialtyId}</p>
 		<p></p>
 	</div>	
 	 	
 	<div>
-		<a href="${pageContext.request.contextPath}/school/static/templates/teachersmenu.jsp">Επιστροφή</a>
+		<a href="${pageContext.request.contextPath}/school/static/templates/teachersmenu.jsp">Return to Control Panel</a>
 	</div> 	
 </body>
 </html>

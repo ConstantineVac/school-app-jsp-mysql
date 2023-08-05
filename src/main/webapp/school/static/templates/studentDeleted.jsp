@@ -10,7 +10,7 @@
 <body>
 <h1>Student deleted successfully</h1>
 
-  <p>Student: ${requestScope.studentDTO.id} ${requestScope.studentDTO.firstname} ${requestScope.studentDTO.lastname}
+  <p>Student: ${requestScope.studentDTO.id} ${requestScope.studentDTO.firstname} ${requestScope.studentDTO.lastname} ${requestScope.studentDTO.cityId}
         was deleted</p>
   <a href="${pageContext.request.contextPath}/school/static/templates/studentsmenu.jsp">Go Back</a>
 </div>

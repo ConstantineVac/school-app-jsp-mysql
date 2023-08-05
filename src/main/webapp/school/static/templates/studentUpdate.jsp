@@ -28,6 +28,9 @@
   <label for="birthdate">Birthdate:</label>
   <input type="text" id="birthdate" name="birthdate" value="${param.birthdate}" required><br>
 
+  <label for="cityId">City ID:</label>
+  <input type="text" id="cityId" name="cityId" value="${param.cityId}" required><br>
+
   <input type="submit" value="Update">
 
   <c:if test="${requestScope.isError}">

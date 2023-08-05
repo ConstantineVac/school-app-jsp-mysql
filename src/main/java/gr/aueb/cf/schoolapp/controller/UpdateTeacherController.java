@@ -37,11 +37,13 @@ public class UpdateTeacherController extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
+		int specialtyId = Integer.parseInt(request.getParameter("specialtyId"));
 
 		TeacherUpdateDTO newTeacherDTO = new TeacherUpdateDTO();
 		newTeacherDTO.setId(id);
 		newTeacherDTO.setFirstname(firstname);
 		newTeacherDTO.setLastname(lastname);
+		newTeacherDTO.setSpecialtyId(specialtyId);
 		request.setAttribute("insertedTeacher", newTeacherDTO);
 		
 		try {
@@ -50,7 +52,8 @@ public class UpdateTeacherController extends HttpServlet {
 			if (!errors.isEmpty()) {
 				String firstnameMessage = (errors.get("firstname") != null) ? "Firstname: " + errors.get("firstname") : "";
 				String lastnameMessage = (errors.get("lastname") != null) ? "Lastname: " + errors.get("lastname") : "";
-				request.setAttribute("error", firstnameMessage + lastnameMessage);
+				// String specialtyIdMessage = (errors.get("specialtyId") != null) ? "Specialty ID: " + errors.get("specialtyId") : "";
+				// String request.setAttribute("error", firstnameMessage + lastnameMessage + " " + specialtyIdMessage);
 				request.getRequestDispatcher("/school/static/templates/teachersmenu.jsp")
 						.forward(request, response);
 			}

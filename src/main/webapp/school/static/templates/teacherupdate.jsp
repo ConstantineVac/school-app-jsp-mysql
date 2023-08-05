@@ -16,7 +16,9 @@
 			<label for="firstname">Firstname</label>
 			<input id="firstname" type="text" name="firstname" value="${param.firstname}"><br>
 			<label for="lastname">Lastname</label>
-			<input id="lastname" type="text" name="lastname" value="${param.lastname}"><br><br>
+			<input id="lastname" type="text" name="lastname" value="${param.lastname}"><br>
+			<label for="specialtyId">Specialty ID</label>
+			<input id="specialtyId" type="text" name="specialtyId" value="${param.specialtyId}"><br><br>
 			<button type="submit">Update Teacher</button>
 		</form>	
 	</div>	

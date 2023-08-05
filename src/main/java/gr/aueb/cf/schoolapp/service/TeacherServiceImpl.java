@@ -95,12 +95,11 @@ public class TeacherServiceImpl implements ITeacherService {
     }
 
     private Teacher map(TeacherInsertDTO dto) {
-        return new Teacher(null,dto.getFirstname(), dto.getLastname());
+        return new Teacher(null,dto.getFirstname(), dto.getLastname(), dto.getSpecialtyId());
     }
 
     private Teacher map(TeacherUpdateDTO dto) {
-        return new Teacher(dto.getId(), dto.getFirstname(), dto.getLastname());
+        return new Teacher(dto.getId(), dto.getFirstname(), dto.getLastname(), dto.getSpecialtyId());
     }
-
 
 }

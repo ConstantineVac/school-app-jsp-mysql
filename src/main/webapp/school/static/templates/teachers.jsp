@@ -16,6 +16,7 @@
         <th>ID</th>
         <th>First Name</th>
         <th>Last Name</th>
+        <th>Specialty ID</th>
         <th>Delete</th>
         <th>Update</th>
       </tr>
@@ -24,12 +25,13 @@
           <td>${teacher.id}</td>
           <td>${teacher.firstname}</td>
           <td>${teacher.lastname}</td>
+          <td>${teacher.specialtyId}</td>
           <td>
-            <a href="${pageContext.request.contextPath}/schoolapp/delete?id=${teacher.id}&firstname=${teacher.firstname}&lastname=${teacher.lastname}"
+            <a href="${pageContext.request.contextPath}/schoolapp/delete?id=${teacher.id}&firstname=${teacher.firstname}&lastname=${teacher.lastname}&specialtyId=${teacher.specialtyId}"
                  onclick="return confirm('Are you sure you want to delete this teacher?')">Delete</a>
           </td>
           <td>
-            <a href="${pageContext.request.contextPath}/school/static/templates/teacherupdate.jsp?id=${teacher.id}&firstname=${teacher.firstname}&lastname=${teacher.lastname}">Update</a>
+            <a href="${pageContext.request.contextPath}/school/static/templates/teacherupdate.jsp?id=${teacher.id}&firstname=${teacher.firstname}&lastname=${teacher.lastname}&specialtyId=${teacher.specialtyId}">Update</a>
           </td>
         </tr>
       </c:forEach>

@@ -3,29 +3,19 @@ package gr.aueb.cf.schoolapp.dto;
 import java.sql.Date;
 
 public class StudentDeleteDTO extends Base{
-    private Integer id;
     private String firstname;
     private String lastname;
     private String gender;
     private java.sql.Date birthdate;
+    private Integer cityId;
 
     public StudentDeleteDTO() {}
-    public StudentDeleteDTO(int id, String firstname, String lastname, String gender, java.sql.Date birthdate) {
-        this.setId(id);
+    public StudentDeleteDTO(String firstname, String lastname, String gender, java.sql.Date birthdate, Integer cityId) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.gender = gender;
         this.birthdate = birthdate;
-    }
-
-    @Override
-    public Integer getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
+        this.cityId = cityId;
     }
 
     public String getFirstname() {
@@ -58,5 +48,13 @@ public class StudentDeleteDTO extends Base{
 
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public Integer getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(Integer cityId) {
+        this.cityId = cityId;
     }
 }
