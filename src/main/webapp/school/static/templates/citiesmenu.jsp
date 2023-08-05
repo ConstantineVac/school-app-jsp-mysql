@@ -44,17 +44,17 @@
 </div>
 
 <div class="center">
-    <c:if test="${requestScope.citySqlError}">
-        <p>${requestScope.cityMessage}</p>
+    <c:if test="${requestScope.sqlError}">
+        <p>${requestScope.message}</p>
     </c:if>
 </div>
 
 <div class="center">
-    <c:if test="${requestScope.citiesNotFound}">
-        <p>No cities found</p>
+    <c:if test="${requestScope.cityNotFound}">
+        <p>No cities found !</p>
     </c:if>
 
-    <p>${requestScope.cityError}</p>
+    <p>${requestScope.error}</p>
 </div>
 <div class="center">
     <a href="${pageContext.request.contextPath}/school/static/templates/control-panel.jsp" class="back-btn">

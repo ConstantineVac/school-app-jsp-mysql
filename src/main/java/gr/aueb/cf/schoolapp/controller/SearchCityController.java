@@ -34,21 +34,23 @@ public class SearchCityController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name").trim();
 
-        String message = "";
         try {
             List<City> cities = cityService.getCitiesByCityName(name);
-            if (cities.size() == 0) {
+            if (cities.isEmpty()) {
                 request.setAttribute("cityNotFound", true);
-                request.getRequestDispatcher("/schoolapp/menu")
+                request.getRequestDispatcher("/school/static/templates/cities.jsp")
+                        .forward(request, response);
+            } else {
+                request.setAttribute("cities", cities);
+                request.getRequestDispatcher("/school/static/templates/cities.jsp")
                         .forward(request, response);
             }
-            request.setAttribute("cities", cities);
-            request.getRequestDispatcher("/school/static/templates/cities.jsp").forward(request, response);
         } catch (CityDAOException | CityNotFoundException e) {
-            message = e.getMessage();
-            request.setAttribute("isError", true);
-            request.setAttribute("errorMessage", message);
-            request.getRequestDispatcher("/school/static/templates/citiesmenu.jsp").forward(request, response);
+            String message = e.getMessage();
+            request.setAttribute("sqlError", true);
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("/school/static/templates/citiesmenu.jsp")
+                    .forward(request, response);
         }
     }
 }
