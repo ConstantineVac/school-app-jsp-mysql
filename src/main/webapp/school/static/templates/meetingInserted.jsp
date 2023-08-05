@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/meetingInserted.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/school/static/css/meetingInserted.css">
     <title> Meeting Inserted Successfully</title>
 </head>
 <body>

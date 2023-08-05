@@ -6,6 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Meeting Deleted Successfully</title>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/school/static/css/meetingDeleted.css">
 </head>
 <body>
 <h1>Meeting deleted successfully</h1>

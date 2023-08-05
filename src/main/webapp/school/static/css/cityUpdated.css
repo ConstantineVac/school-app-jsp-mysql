@@ -8,7 +8,7 @@ body {
 h1 {
     text-align: center;
     padding: 20px;
-    color: #007bff;
+    color: #4CAF50;
 }
 
 p {
@@ -22,7 +22,7 @@ a {
     display: inline-block;
     padding: 10px 20px;
     text-decoration: none;
-    background-color: #007bff;
+    background-color: #4CAF50;
     color: #fff;
     border-radius: 5px;
     text-align: center;
@@ -30,5 +30,5 @@ a {
 }
 
 a:hover {
-    background-color: #0056b3;
+    background-color: #419444;
 }

@@ -30,23 +30,21 @@ public class SearchTeachersController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // response.setContentType("text/html; charset=UTF-8");
         String lastname = request.getParameter("lastname").trim();
 
-        String message = "";
         try {
             List<Teacher> teachers = teacherService.getTeachersByLastname(lastname);
-            if (teachers.size() == 0) {
+            if (teachers.isEmpty()) {
                 request.setAttribute("teachersNotFound", true);
-                request.getRequestDispatcher("/schoolapp/menu")
-                        .forward(request, response);
+                request.getRequestDispatcher("/school/static/templates/teachersmenu.jsp").forward(request, response);
+            } else {
+                request.setAttribute("teachers", teachers);
+                request.getRequestDispatcher("/school/static/templates/teachers.jsp").forward(request, response);
             }
-            request.setAttribute("teachers", teachers);
-            request.getRequestDispatcher("/school/static/templates/teachers.jsp").forward(request, response);
         } catch (TeacherDAOException e) {
-            message = e.getMessage();
-            request.setAttribute("isError", true);
-            request.setAttribute("errorMessage", message);
+            String message = e.getMessage();
+            request.setAttribute("sqlError", true);
+            request.setAttribute("message", message);
             request.getRequestDispatcher("/school/static/templates/teachersmenu.jsp").forward(request, response);
         }
     }
