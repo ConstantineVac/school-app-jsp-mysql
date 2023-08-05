@@ -8,6 +8,7 @@ import gr.aueb.cf.schoolapp.model.Teacher;
 import gr.aueb.cf.schoolapp.service.exceptions.TeacherNotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 
 public class TeacherServiceImpl implements ITeacherService {
     private final ITeacherDAO teacherDAO;
@@ -67,13 +68,19 @@ public class TeacherServiceImpl implements ITeacherService {
     }
 
     @Override
-    public List<Teacher> getTeachersByLastname(String lastname) throws TeacherDAOException {
-        List<Teacher> teachers;
+    public List<Teacher> getTeachersByLastname(String lastname) throws TeacherDAOException , TeacherNotFoundException {
+        if (lastname == null) {
+            throw new IllegalArgumentException("lastname cannot be null");
+        }
 
         try {
-            teachers = teacherDAO.getByLastname(lastname);
-            return teachers;
-        } catch (TeacherDAOException e) {
+            Optional<List> teachersOptional = teacherDAO.getByLastname(lastname);
+            if (!teachersOptional.isPresent()) {
+                throw new TeacherNotFoundException("No teachers found with lastname: " + lastname);
+            }
+            return teachersOptional.get();
+
+        }catch (TeacherNotFoundException e) {
             e.printStackTrace();
             throw e;
         }

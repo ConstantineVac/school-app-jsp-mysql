@@ -12,6 +12,6 @@ public interface ITeacherService {
     Teacher insertTeacher(TeacherInsertDTO dto) throws TeacherDAOException;
     Teacher updateTeacher(TeacherUpdateDTO dto) throws TeacherDAOException, TeacherNotFoundException;
     void deleteTeacher(int id) throws TeacherDAOException, TeacherNotFoundException;
-    List<Teacher> getTeachersByLastname(String lastname) throws TeacherDAOException;
+    List<Teacher> getTeachersByLastname(String lastname) throws TeacherDAOException, TeacherNotFoundException;
     Teacher getTeacherById(int id) throws TeacherDAOException, TeacherNotFoundException;
 }
