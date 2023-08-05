@@ -34,21 +34,21 @@ public class SearchStudentsController extends HttpServlet {
         //response.setContentType("text/html; charset=UTF-8");
         String lastname = request.getParameter("lastname").trim();
 
-        String message = "";
         try {
             List<Student> students = studentService.getStudentsByLastname(lastname);
-            if (students.size() == 0) {
+            if (students.isEmpty()) {
                 request.setAttribute("studentsNotFound", true);
-                request.getRequestDispatcher("/schoolapp/menu")
+                request.getRequestDispatcher("/school/static/templates/studentsmenu.jsp")
+                        .forward(request, response);
+            } else {
+                request.setAttribute("students", students);
+                request.getRequestDispatcher("/school/static/templates/students.jsp")
                         .forward(request, response);
             }
-            request.setAttribute("students", students);
-            request.getRequestDispatcher("/school/static/templates/students.jsp")
-                    .forward(request, response);
         } catch (StudentDAOException e) {
-            message = e.getMessage();
-            request.setAttribute("isError", true);
-            request.setAttribute("errorMessage", message);
+            String message = e.getMessage();
+            request.setAttribute("sqlError", true);
+            request.setAttribute("message", message);
             request.getRequestDispatcher("/school/static/templates/studentsmenu.jsp")
                     .forward(request, response);
         }

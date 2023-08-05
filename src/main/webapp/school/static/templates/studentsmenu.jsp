@@ -52,10 +52,9 @@
     <p>${requestScope.message}</p>
   </c:if>
 </div>
-
 <div class="center">
   <c:if test="${requestScope.studentsNotFound}">
-    <p>No students found</p>
+    <p>No students found !</p>
   </c:if>
 
   <p>${requestScope.error}</p>
