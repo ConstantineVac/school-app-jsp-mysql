@@ -33,22 +33,21 @@ public class SearchMeetingController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String room = request.getParameter("room");
 
-        String message = "";
-
         try {
             List<Meeting> meetings = meetingService.getMeetingByRoom(room);
-            if (meetings.size() == 0) {
+            if (meetings.isEmpty()) {
                 request.setAttribute("meetingsNotFound", true);
-                request.getRequestDispatcher("/schoolapp/menu")
+                request.getRequestDispatcher("/school/static/templates/meetingsmenu.jsp")
+                        .forward(request, response);
+            } else {
+                request.setAttribute("meetings", meetings);
+                request.getRequestDispatcher("/school/static/templates/meetings.jsp")
                         .forward(request, response);
             }
-            request.setAttribute("meetings", meetings);
-            request.getRequestDispatcher("/school/static/templates/meetings.jsp")
-                    .forward(request, response);
         } catch (MeetingDAOException e) {
-            message = e.getMessage();
-            request.setAttribute("isError", true);
-            request.setAttribute("errorMessage", message);
+            String message = e.getMessage();
+            request.setAttribute("sqlError", true);
+            request.setAttribute("message", message);
             request.getRequestDispatcher("/school/static/templates/meetingsmenu.jsp")
                     .forward(request, response);
         }

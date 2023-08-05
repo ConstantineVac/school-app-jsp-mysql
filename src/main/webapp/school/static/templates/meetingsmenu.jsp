@@ -1,4 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+
 <html>
 <head>
     <title>Meetings Menu</title>
@@ -50,7 +52,7 @@
 
 <div class="center">
   <c:if test="${requestScope.meetingsNotFound}">
-    <p>No meetings found</p>
+    <p>No meetings found !</p>
   </c:if>
 
   <p>${requestScope.error}</p>
