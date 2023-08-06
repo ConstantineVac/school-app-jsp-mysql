@@ -6,6 +6,7 @@ import gr.aueb.cf.schoolapp.dao.exceptions.StudentDAOException;
 import gr.aueb.cf.schoolapp.model.Student;
 import gr.aueb.cf.schoolapp.service.IStudentService;
 import gr.aueb.cf.schoolapp.service.StudentServiceImpl;
+import gr.aueb.cf.schoolapp.service.exceptions.TeacherNotFoundException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,7 +46,7 @@ public class SearchStudentsController extends HttpServlet {
                 request.getRequestDispatcher("/school/static/templates/students.jsp")
                         .forward(request, response);
             }
-        } catch (StudentDAOException e) {
+        } catch (StudentDAOException | TeacherNotFoundException e) {
             String message = e.getMessage();
             request.setAttribute("sqlError", true);
             request.setAttribute("message", message);

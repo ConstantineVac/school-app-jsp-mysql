@@ -5,6 +5,7 @@ import gr.aueb.cf.schoolapp.dto.StudentInsertDTO;
 import gr.aueb.cf.schoolapp.dto.StudentUpdateDTO;
 import gr.aueb.cf.schoolapp.model.Student;
 import gr.aueb.cf.schoolapp.service.exceptions.StudentNotFoundException;
+import gr.aueb.cf.schoolapp.service.exceptions.TeacherNotFoundException;
 
 
 import java.util.List;
@@ -13,6 +14,6 @@ public interface IStudentService {
     Student insertStudent(StudentInsertDTO dto) throws StudentDAOException;
     Student updateStudent(StudentUpdateDTO dto) throws StudentDAOException, StudentNotFoundException;
     void deleteStudent(int id) throws StudentDAOException, StudentNotFoundException;
-    List<Student> getStudentsByLastname(String lastname) throws StudentDAOException;
+    List<Student> getStudentsByLastname(String lastname) throws StudentDAOException, TeacherNotFoundException;
     Student getStudentById(int id) throws StudentDAOException, StudentNotFoundException;
 }

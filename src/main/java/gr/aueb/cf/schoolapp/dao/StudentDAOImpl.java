@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class StudentDAOImpl implements IStudentDAO{
     @Override
@@ -105,7 +106,7 @@ public class StudentDAOImpl implements IStudentDAO{
     }
 
     @Override
-    public List<Student> getByLastname(String lastname) throws StudentDAOException {
+    public Optional<List> getByLastname(String lastname) throws StudentDAOException {
         String sql = "SELECT * FROM STUDENTS WHERE LASTNAME LIKE ?";
         List<Student> students = new ArrayList<>();
 
@@ -123,7 +124,12 @@ public class StudentDAOImpl implements IStudentDAO{
         } catch (SQLException e1) {
             e1.printStackTrace();
         }
-        return students;
+
+        if (students.isEmpty()) {
+            return Optional.empty();
+        } else {
+            return Optional.of(students);
+        }
     }
 
     @Override

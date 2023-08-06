@@ -37,16 +37,19 @@ public class SearchTeachersController extends HttpServlet {
             List<Teacher> teachers = teacherService.getTeachersByLastname(lastname);
             if (teachers.isEmpty()) {
                 request.setAttribute("teachersNotFound", true);
-                request.getRequestDispatcher("/school/static/templates/teachersmenu.jsp").forward(request, response);
+                request.getRequestDispatcher("/school/static/templates/teachersmenu.jsp")
+                        .forward(request, response);
             } else {
                 request.setAttribute("teachers", teachers);
-                request.getRequestDispatcher("/school/static/templates/teachers.jsp").forward(request, response);
+                request.getRequestDispatcher("/school/static/templates/teachers.jsp")
+                        .forward(request, response);
             }
         } catch (TeacherDAOException | TeacherNotFoundException e) {
             String message = e.getMessage();
             request.setAttribute("sqlError", true);
             request.setAttribute("message", message);
-            request.getRequestDispatcher("/school/static/templates/teachersmenu.jsp").forward(request, response);
+            request.getRequestDispatcher("/school/static/templates/teachersmenu.jsp")
+                    .forward(request, response);
         }
     }
 }

@@ -6,9 +6,11 @@ import gr.aueb.cf.schoolapp.dto.StudentInsertDTO;
 import gr.aueb.cf.schoolapp.dto.StudentUpdateDTO;
 import gr.aueb.cf.schoolapp.model.Student;
 import gr.aueb.cf.schoolapp.service.exceptions.StudentNotFoundException;
+import gr.aueb.cf.schoolapp.service.exceptions.TeacherNotFoundException;
 
 
 import java.util.List;
+import java.util.Optional;
 
 public class StudentServiceImpl implements IStudentService {
 
@@ -70,17 +72,24 @@ public class StudentServiceImpl implements IStudentService {
         }
 
         @Override
-        public List<Student> getStudentsByLastname (String lastname) throws StudentDAOException {
-            List<Student> students;
+        public List<Student> getStudentsByLastname (String lastname) throws StudentDAOException, TeacherNotFoundException {
+            if (lastname == null) {
+                throw new IllegalArgumentException("lastname cannot be null");
+            }
 
             try {
-                students = studentDAO.getByLastname(lastname);
-                return students;
-            } catch (StudentDAOException e) {
+                Optional<List> studentsOptional = studentDAO.getByLastname(lastname);
+                if (!studentsOptional.isPresent()) {
+                    throw new TeacherNotFoundException("No students found with lastname: " + lastname);
+                }
+                return studentsOptional.get();
+
+            }catch (StudentDAOException | TeacherNotFoundException  e) {
                 e.printStackTrace();
                 throw e;
             }
         }
+
 
         @Override
         public Student getStudentById ( int id) throws StudentDAOException, StudentNotFoundException {
