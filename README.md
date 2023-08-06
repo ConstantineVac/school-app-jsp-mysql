@@ -12,6 +12,7 @@ The School App Pro provides the following features:
 
 - User admins can sign up and create an account.
 - Existing user admins can sign in with their credentials.
+- User Passwords are hash encrypted while stored in the Database.
 
 ### Teachers Management
 
@@ -82,4 +83,4 @@ Contributions to the School App Pro project are welcome. If you encounter any is
 
 ---
 
-Thank you for choosing School App Pro! We hope this application makes school management more convenient and efficient for you. If you have any questions or need support, please don't hesitate to contact us. Happy managing!
+Thank you for taking your time to check out my School App Pro! If you have any questions or want to make any suggestions, please don't hesitate to contact us. Happy Coding!
