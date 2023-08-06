@@ -11,22 +11,39 @@ The School App Pro provides the following features:
 ### User Authentication
 
 - User admins can sign up and create an account.
+--- 
+![image](https://github.com/ConstantineVac/school-app-jsp-mysql/assets/108877593/f775e627-be2a-452e-8775-981b0ede66d9)
+
 - Existing user admins can sign in with their credentials.
+---
+![image](https://github.com/ConstantineVac/school-app-jsp-mysql/assets/108877593/63b40755-2bb0-4e92-9331-2dc8e7b7ef3d)
+
 - User Passwords are hash encrypted while stored in the Database.
+![image](https://github.com/ConstantineVac/school-app-jsp-mysql/assets/108877593/bf13e85f-6943-46f3-a0fe-a6e28cb30cbe)
 
 ### Teachers Management
+- User admins can add new teachers to the system.
+---
+![image](https://github.com/ConstantineVac/school-app-jsp-mysql/assets/108877593/eafe3105-e6aa-42b6-97a8-c046858b5f5f)
 
 - User admins can view a list of all teachers in the school.
-- They can add new teachers to the system.
-- They can update the information of existing teachers (e.g., first name, last name).
+- User admins can update the information of existing teachers (e.g., first name, last name).
 - User admins have the option to delete teachers from the system.
+---
+![image](https://github.com/ConstantineVac/school-app-jsp-mysql/assets/108877593/af5f61ea-4555-420d-9da5-fd60eb8a32df)
+
 
 ### Meetings Management
 
+- User admins can schedule new meetings with specified teachers and students.
+---
+![image](https://github.com/ConstantineVac/school-app-jsp-mysql/assets/108877593/7308e193-5cff-4fdf-aea8-657fac468bc5)
+
 - User admins can view a list of all scheduled meetings.
-- They can schedule new meetings with specified teachers and students.
 - User admins can update the details of existing meetings (e.g., room, meeting date).
 - They can also cancel or delete scheduled meetings.
+--- 
+![image](https://github.com/ConstantineVac/school-app-jsp-mysql/assets/108877593/e77db3e7-16f3-4ca1-8ddc-9a49891a906f)
 
 ### Students Management
 
