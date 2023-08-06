@@ -19,6 +19,7 @@ public class MenuController extends HttpServlet {
         request.setAttribute("teachersNotFound", false);
         request.setAttribute("isError", false);
         request.setAttribute("error", "");
-        request.getRequestDispatcher("/school/static/templates/control-panel.jsp").forward(request, response);
+        request.getRequestDispatcher("/school/static/templates/control-panel.jsp")
+                .forward(request, response);
     }
 }

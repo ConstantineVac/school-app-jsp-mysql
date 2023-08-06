@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "SearchTeachersController", value = "/schoolapp/search")
+@WebServlet(name = "SearchTeachersController", value = "/schoolapp/teacherSearch")
 public class SearchTeachersController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     ITeacherDAO teacherDAO = new TeacherDAOImpl();

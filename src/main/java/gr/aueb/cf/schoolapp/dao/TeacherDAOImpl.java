@@ -139,4 +139,25 @@ public class TeacherDAOImpl implements ITeacherDAO {
         }
         return teacher;
     }
+
+    @Override
+    public List<Teacher> getAllTeachers() throws TeacherDAOException {
+        String sql = "SELECT * FROM TEACHERS";
+        List<Teacher> teachers = new ArrayList<>();
+
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Teacher teacher = new Teacher(rs.getInt("ID"), rs.getString("FIRSTNAME"), rs.getString("LASTNAME"), rs.getInt("SPECIALTY_ID"));
+                teachers.add(teacher);
+            }
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+
+        return teachers;
+    }
+
 }

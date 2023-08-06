@@ -33,8 +33,20 @@
     </div>
     <div class="bot-gap">
       <form method="POST" action="${pageContext.request.contextPath}/schoolapp/insertMeeting">
-        <input name="teacherId" type="text" value="${requestScope.insertedMeeting.teacherId}" class="insert rounded" placeholder="Teacher's ID: " autofocus/><br>
-        <input name="studentId" type="text" value="${requestScope.insertedMeeting.studentId}" class="insert rounded" placeholder="Student ID: " autofocus/><br>
+        <label for="teacherSelect">Choose a Teacher:</label>
+        <select name="teacherId" id="teacherSelect">
+          <c:forEach var="teacher" items="${teachers}">
+            <option value="${teacher.id}">${teacher.lastname}</option>
+          </c:forEach>
+        </select>
+        <br>
+        <label for="studentSelect">Choose a Student:</label>
+        <select name="studentId" id="studentSelect">
+          <c:forEach var="student" items="${students}">
+            <option value="${student.id}">${student.lastname}</option>
+          </c:forEach>
+        </select>
+        <br>
         <input name="room" type="text" value="${requestScope.insertedMeeting.room}" class="insert rounded" placeholder="Room: " autofocus/><br>
         <input name="meetingDate" type="text" value="${requestScope.insertedMeeting.meetingDate}" class="insert rounded" placeholder="Meeting Date: " autofocus/><br>
         <br>

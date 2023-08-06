@@ -19,7 +19,7 @@
         <span class="title">Teachers Search</span>
       </div>
       <div class="bot-gap">
-        <form method="POST" action="${pageContext.request.contextPath}/schoolapp/search">
+        <form method="POST" action="${pageContext.request.contextPath}/schoolapp/teacherSearch">
           <input name="lastname" type="text" class="search rounded" placeholder="Insert teacher's lastname"
                  autofocus/>
           <br><br>
@@ -33,13 +33,18 @@
         <span class="title">Teachers Insert</span>
       </div>
       <div class="bot-gap">
-        <form method="POST" action="${pageContext.request.contextPath}/schoolapp/insert">
+        <form method="POST" action="${pageContext.request.contextPath}/schoolapp/teacherInsert">
           <input name="lastname" type="text" value="${requestScope.insertedTeacher.lastname}"
                  class="insert rounded" placeholder="Last name" autofocus/><br>
           <input name="firstname" type="text" value="${requestScope.insertedteacher.firstname}"
-                 class="insert rounded" placeholder="First name" autofocus/>
-          <input name="specialtyId" type="text" value="${requestScope.insertedteacher.specialtyId}"
-                 class="insert rounded" placeholder="Specialty ID" autofocus/>
+                 class="insert rounded" placeholder="First name" autofocus/><br>
+          <label for="specialtySelect">Select Specialty: </label>
+          <select name="specialtyId" id="specialtySelect">
+            <option value="">Select a specialty</option>
+            <c:forEach var="specialty" items="${specialties}">
+              <option value="${specialty.id}">${specialty.name}</option>
+            </c:forEach>
+          </select>
           <br><br>
           <button class="search-btn rounded color-btn" type="submit">Insert</button>
         </form>

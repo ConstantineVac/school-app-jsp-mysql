@@ -32,11 +32,4 @@ public class City {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "City{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

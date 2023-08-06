@@ -5,21 +5,21 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/studentInserted.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/school/static/css/studentInserted.css">
   <title>Student Inserted Successfully</title>
 </head>
 <body>
 <h1>Student inserted successfully</h1>
 <div>
-  <p>First Name: ${requestScope.insertedStudent.firstname}</p>
-  <p>Last Name: ${requestScope.insertedStudent.lastname}</p>
+  <p>Firstname: ${requestScope.insertedStudent.firstname}</p>
+  <p>Lastname: ${requestScope.insertedStudent.lastname}</p>
   <p>Gender: ${requestScope.insertedStudent.gender}</p>
   <p>Birthdate: ${requestScope.insertedStudent.birthdate}</p>
   <p>City ID: ${requestScope.insertedStudent.cityId}</p>
 </div>
 
 <div>
-  <a href="${pageContext.request.contextPath}/school/static/templates/studentsmenu.jsp">Go Back</a>
+  <a href="${pageContext.request.contextPath}/schoolapp/studentInsert">Go Back</a>
 </div>
 </body>
 </html>

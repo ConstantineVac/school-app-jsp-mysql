@@ -17,7 +17,7 @@ body {
 
 h1 {
     font-size: 32px;
-    color: #008080;
+    color: #068110;
     margin-bottom: 20px;
 }
 
@@ -29,7 +29,7 @@ p {
 a {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #008080;
+    background-color: #17c424;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -37,5 +37,5 @@ a {
 }
 
 a:hover {
-    background-color: #005959;
+    background-color: #14a61e;
 }

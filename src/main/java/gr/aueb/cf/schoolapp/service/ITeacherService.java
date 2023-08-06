@@ -14,4 +14,5 @@ public interface ITeacherService {
     void deleteTeacher(int id) throws TeacherDAOException, TeacherNotFoundException;
     List<Teacher> getTeachersByLastname(String lastname) throws TeacherDAOException, TeacherNotFoundException;
     Teacher getTeacherById(int id) throws TeacherDAOException, TeacherNotFoundException;
+    List<Teacher> getAllTeachers() throws TeacherDAOException, TeacherNotFoundException;
 }

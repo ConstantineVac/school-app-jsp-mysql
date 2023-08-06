@@ -106,6 +106,17 @@ public class StudentServiceImpl implements IStudentService {
             return student;
         }
 
+    @Override
+    public List<Student> getAllStudents() throws StudentDAOException, StudentNotFoundException {
+        List<Student> students = null;
+        try {
+            students = studentDAO.getAllStudents();
+        } catch (StudentDAOException e) {
+            e.printStackTrace();
+        }
+        return students;
+    }
+
     private Student map(StudentInsertDTO dto) {
         return new Student(null, dto.getFirstname(), dto.getLastname(), dto.getGender(), dto.getBirthdate(), dto.getCityId());
     }

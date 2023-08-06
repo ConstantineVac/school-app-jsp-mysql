@@ -67,18 +67,7 @@ public class CityServiceImpl implements ICityService {
             throw e;
         }
     }
-//
-//    @Override
-//    public List<City> getCitiesByCityName(String name) throws CityDAOException {
-//        List<City> cities;
-//        try {
-//           cities= cityDAO.getByCityName(name);
-//            return cities;
-//        } catch (CityDAOException e) {
-//            e.printStackTrace();
-//            throw e;
-//        }
-//    }
+
 @Override
 public List<City> getCitiesByCityName(String name) throws CityDAOException, CityNotFoundException {
     if (name == null) {
@@ -98,8 +87,6 @@ public List<City> getCitiesByCityName(String name) throws CityDAOException, City
         throw e;
     }
 }
-
-
 
     @Override
     public City getCityById(int id) throws CityDAOException, CityNotFoundException {

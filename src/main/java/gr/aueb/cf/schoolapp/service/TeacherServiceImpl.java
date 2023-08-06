@@ -1,9 +1,11 @@
 package gr.aueb.cf.schoolapp.service;
 
 import gr.aueb.cf.schoolapp.dao.ITeacherDAO;
+import gr.aueb.cf.schoolapp.dao.exceptions.SpecialtyDAOException;
 import gr.aueb.cf.schoolapp.dao.exceptions.TeacherDAOException;
 import gr.aueb.cf.schoolapp.dto.TeacherInsertDTO;
 import gr.aueb.cf.schoolapp.dto.TeacherUpdateDTO;
+import gr.aueb.cf.schoolapp.model.Specialty;
 import gr.aueb.cf.schoolapp.model.Teacher;
 import gr.aueb.cf.schoolapp.service.exceptions.TeacherNotFoundException;
 
@@ -99,6 +101,18 @@ public class TeacherServiceImpl implements ITeacherService {
             throw e;
         }
         return teacher;
+    }
+
+    @Override
+    public List<Teacher> getAllTeachers() throws TeacherDAOException, TeacherNotFoundException {
+        List<Teacher> teachers = null;
+        try {
+            teachers = teacherDAO.getAllTeachers();
+        } catch (TeacherDAOException e) {
+            e.printStackTrace();
+            // handle exception
+        }
+        return teachers;
     }
 
     private Teacher map(TeacherInsertDTO dto) {

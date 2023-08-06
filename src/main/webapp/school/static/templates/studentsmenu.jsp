@@ -39,7 +39,13 @@
         <input name="lastname" type="text" value="${requestScope.studentInserted.lastname}" class="insert rounded" placeholder="Lastname" autofocus/><br>
         <input name="gender" type="text" value="${requestScope.studentInserted.gender}" class="insert rounded" placeholder="Gender" autofocus/><br>
         <input name="birthdate" type="text" value="${requestScope.studentInserted.birthdate}" class="insert rounded" placeholder="Birthdate" autofocus/><br>
-        <input name="cityId" type="text" value="${requestScope.studentInserted.cityId}" class="insert rounded" placeholder="City ID" autofocus/><br>
+        <label for="citySelect">Choose a city:</label>
+        <select name="cityId" id="citySelect">
+          <option value="">Select a city</option>
+          <c:forEach var="city" items="${cities}">
+            <option value="${city.id}">${city.name}</option>
+          </c:forEach>
+        </select>
         <br>
         <button class="search-btn rounded color-btn" type="submit">Insert</button>
       </form>
@@ -58,6 +64,8 @@
   </c:if>
 
   <p>${requestScope.error}</p>
+
+  <p>${requestScope.error1}</p>
 </div>
 <div class="center">
   <a href="${pageContext.request.contextPath}/school/static/templates/control-panel.jsp" class="back-btn">

@@ -13,4 +13,6 @@ public interface IStudentDAO {
     void delete(int id) throws StudentDAOException;
     Optional<List> getByLastname(String lastname) throws StudentDAOException;
     Student getById(int id) throws StudentDAOException;
+
+    List<Student> getAllStudents() throws StudentDAOException;
 }

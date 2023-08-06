@@ -2,6 +2,7 @@ package gr.aueb.cf.schoolapp.dao;
 
 import gr.aueb.cf.schoolapp.dao.exceptions.StudentDAOException;
 import gr.aueb.cf.schoolapp.model.Student;
+import gr.aueb.cf.schoolapp.model.Teacher;
 import gr.aueb.cf.schoolapp.service.util.DBUtil;
 
 import java.sql.Connection;
@@ -151,5 +152,25 @@ public class StudentDAOImpl implements IStudentDAO{
             e1.printStackTrace();
         }
         return student;
+    }
+
+    @Override
+    public List<Student> getAllStudents() throws StudentDAOException {
+        String sql = "SELECT * FROM STUDENTS";
+        List<Student> students = new ArrayList<>();
+
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Student student = new Student(rs.getInt("ID"), rs.getString("FIRSTNAME"), rs.getString("LASTNAME"), rs.getString("GENDER"), rs.getDate("BIRTHDATE"), rs.getInt("CITY_ID"));
+                students.add(student);
+            }
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+
+        return students;
     }
 }

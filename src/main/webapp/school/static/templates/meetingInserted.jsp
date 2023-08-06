@@ -18,7 +18,7 @@
 </div>
 
 <div>
-    <a href="${pageContext.request.contextPath}/school/static/templates/meetingsmenu.jsp">Go Back</a>
+    <a href="${pageContext.request.contextPath}/schoolapp/insertMeeting">Go Back</a>
 </div>
 </body>
 </html>

@@ -1,4 +1,6 @@
-<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,11 +15,11 @@
 <div class="container">
   <h1>Welcome to the Control Panel</h1>
   <div class="buttons-container">
-    <a href="${pageContext.request.contextPath}/school/static/templates/teachersmenu.jsp" class="control-btn">
+    <a href="${pageContext.request.contextPath}/schoolapp/teacherInsert" class="control-btn">
       <i class="fas fa-chalkboard-teacher"></i>
       Teachers Menu
     </a>
-    <a href="${pageContext.request.contextPath}/school/static/templates/studentsmenu.jsp" class="control-btn">
+    <a href="${pageContext.request.contextPath}/schoolapp/studentInsert" class="control-btn">
       <i class="fas fa-user-graduate"></i>
       Students Menu
     </a>
@@ -29,7 +31,7 @@
       <i class="fas fa-certificate"></i>
       Specialty Menu
     </a>
-    <a href="${pageContext.request.contextPath}/school/static/templates/meetingsmenu.jsp" class="control-btn">
+    <a href="${pageContext.request.contextPath}/schoolapp/insertMeeting" class="control-btn">
       <i class="fas fa-calendar-alt"></i>
       Meetings Menu
     </a>

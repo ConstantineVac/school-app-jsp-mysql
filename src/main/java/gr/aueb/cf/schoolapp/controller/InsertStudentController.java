@@ -1,12 +1,19 @@
 package gr.aueb.cf.schoolapp.controller;
 
+import gr.aueb.cf.schoolapp.dao.CityDAOImpl;
+import gr.aueb.cf.schoolapp.dao.ICityDAO;
 import gr.aueb.cf.schoolapp.dao.IStudentDAO;
 import gr.aueb.cf.schoolapp.dao.StudentDAOImpl;
+import gr.aueb.cf.schoolapp.dao.exceptions.CityDAOException;
 import gr.aueb.cf.schoolapp.dao.exceptions.StudentDAOException;
 import gr.aueb.cf.schoolapp.dto.StudentInsertDTO;
+import gr.aueb.cf.schoolapp.model.City;
 import gr.aueb.cf.schoolapp.model.Student;
+import gr.aueb.cf.schoolapp.service.CityServiceImpl;
+import gr.aueb.cf.schoolapp.service.ICityService;
 import gr.aueb.cf.schoolapp.service.IStudentService;
 import gr.aueb.cf.schoolapp.service.StudentServiceImpl;
+import gr.aueb.cf.schoolapp.service.exceptions.CityNotFoundException;
 import gr.aueb.cf.schoolapp.validator.StudentValidator;
 
 
@@ -17,21 +24,42 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet("/schoolapp/studentInsert")
 public class InsertStudentController extends HttpServlet {
     private final IStudentDAO studentDAO = new StudentDAOImpl();
     private final IStudentService studentService = new StudentServiceImpl(studentDAO);
+    private final ICityDAO cityDAO = new CityDAOImpl();
+    private final ICityService cityService = new CityServiceImpl(cityDAO);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/schoolapp/menu").forward(request, response);
+        System.out.println("doGet method is called");
+
+        try {
+            List<City> cities = cityService.getAllCities();
+            request.setAttribute("cities", cities);
+            request.getRequestDispatcher("/school/static/templates/studentsmenu.jsp")
+                    .forward(request, response);
+        } catch (CityDAOException e) {
+            request.setAttribute("error1", "Error while retrieving the list for cities");
+            request.getRequestDispatcher("/school/static/templates/studentsmenu.jsp")
+                    .forward(request, response);
+
+        } catch (CityNotFoundException e) {
+            request.setAttribute("error1", "No cities found in the database");
+            request.getRequestDispatcher("/school/static/templates/studentsmenu.jsp")
+                    .forward(request, response);
+        }
     }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8"); // Set character encoding to properly handle non-ASCII characters in the request
+        System.out.println("doPost method is called");
 
         String firstname = request.getParameter("firstname").trim();
         String lastname = request.getParameter("lastname").trim();
@@ -42,7 +70,7 @@ public class InsertStudentController extends HttpServlet {
         // Check if any of the required fields are empty
         if (firstname.isEmpty() || lastname.isEmpty() || gender.isEmpty() || birthdate.isEmpty() || cityIdParam.isEmpty()) {
             request.setAttribute("error", "All fields are required.");
-            request.getRequestDispatcher("/school/static/templates/studentsmenu.jsp").forward(request, response);
+            reloadCitiesAndForward(request, response);
             return;
         }
 
@@ -52,7 +80,7 @@ public class InsertStudentController extends HttpServlet {
             birthDateValue = Date.valueOf(birthdate);
         } catch (IllegalArgumentException e) {
             request.setAttribute("error", "Invalid date format for Birthdate.");
-            request.getRequestDispatcher("/school/static/templates/studentsmenu.jsp").forward(request, response);
+            reloadCitiesAndForward(request, response);
             return;
         }
 
@@ -61,7 +89,7 @@ public class InsertStudentController extends HttpServlet {
             cityId = Integer.parseInt(cityIdParam);
         } catch (NumberFormatException e) {
             request.setAttribute("error", "Invalid city ID. Please provide a valid integer value.");
-            request.getRequestDispatcher("/school/static/templates/studentsmenu.jsp").forward(request, response);
+            reloadCitiesAndForward(request, response);
             return;
         }
 
@@ -80,7 +108,7 @@ public class InsertStudentController extends HttpServlet {
                     errorMessage.append(field).append(": ").append(errors.get(field)).append(" ");
                 }
                 request.setAttribute("error", errorMessage.toString());
-                request.getRequestDispatcher("/school/static/templates/studentsmenu.jsp").forward(request, response);
+                reloadCitiesAndForward(request, response);
                 return;
             }
             Student student = studentService.insertStudent(studentInsertDTO);
@@ -92,4 +120,22 @@ public class InsertStudentController extends HttpServlet {
             request.getRequestDispatcher("/schoolapp/menu").forward(request, response);
         }
     }
+
+    private void reloadCitiesAndForward(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            List<City> cities = cityService.getAllCities();
+            request.setAttribute("cities", cities);
+            request.getRequestDispatcher("/school/static/templates/studentsmenu.jsp")
+                    .forward(request, response);
+        } catch (CityDAOException e1) {
+            request.setAttribute("error1", "Error while retrieving the list for cities");
+            request.getRequestDispatcher("/school/static/templates/studentsmenu.jsp")
+                    .forward(request, response);
+        } catch (CityNotFoundException e1) {
+            request.setAttribute("error1", "No cities found in the database");
+            request.getRequestDispatcher("/school/static/templates/studentsmenu.jsp")
+                    .forward(request, response);
+        }
+    }
+
 }

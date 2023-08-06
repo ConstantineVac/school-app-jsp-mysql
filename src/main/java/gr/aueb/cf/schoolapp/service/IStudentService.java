@@ -16,4 +16,6 @@ public interface IStudentService {
     void deleteStudent(int id) throws StudentDAOException, StudentNotFoundException;
     List<Student> getStudentsByLastname(String lastname) throws StudentDAOException, TeacherNotFoundException;
     Student getStudentById(int id) throws StudentDAOException, StudentNotFoundException;
+
+    List<Student> getAllStudents() throws StudentDAOException, StudentNotFoundException;
 }

@@ -19,7 +19,7 @@
 	</div>	
 	 	
 	<div>
-		<a href="${pageContext.request.contextPath}/school/static/templates/teachersmenu.jsp">Return to Control Panel</a>
+		<a href="${pageContext.request.contextPath}/schoolapp/teacherInsert">Return to Control Panel</a>
 	</div> 	
 </body>
 </html>
