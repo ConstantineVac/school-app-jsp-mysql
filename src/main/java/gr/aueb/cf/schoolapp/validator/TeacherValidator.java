@@ -28,8 +28,12 @@ public class TeacherValidator {
             errors.put("lastname", "whitespaces");
         }
 
-        // if (userService.isUsernameTaken(dto.getUsername()) {
-        // }
+        Integer specialtyId = dto.getSpecialtyId();
+        if (specialtyId == null) {
+            errors.put("specialtyId", "SpecialtyId must be provided.");
+        } else if (specialtyId < 1) { // assuming cityId starts from 1
+            errors.put("specialtyId", "SpecialtyId must be valid.");
+        }
 
         return errors;
     }
@@ -52,8 +56,12 @@ public class TeacherValidator {
             errors.put("lastname", "whitespaces");
         }
 
-        // if (userService.isUsernameTaken(dto.getUsername()) {
-        // }
+        Integer specialtyId = dto.getSpecialtyId();
+        if (specialtyId == null) {
+            errors.put("specialtyId", "SpecialtyId must be provided.");
+        } else if (specialtyId < 1) { // assuming cityId starts from 1
+            errors.put("specialtyId", "SpecialtyId must be valid.");
+        }
 
         return errors;
     }

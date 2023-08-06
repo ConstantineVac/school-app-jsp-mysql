@@ -29,33 +29,33 @@ public class InsertSpecialtyController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("specialtyError", "");
-
+        // Retrieve the submitted form data
         String name = request.getParameter("name").trim();
 
-        // You can perform any additional validation or processing here as needed
-        // For example, check if the specialty name is not empty or exceeds a certain length
-
+        // Create the SpecialtyInsertDTO object
         SpecialtyInsertDTO specialtyInsertDTO = new SpecialtyInsertDTO();
         specialtyInsertDTO.setName(name);
 
-        try {
-            Map<String, String> errors = SpecialtyValidator.validate(specialtyInsertDTO);
-            if (!errors.isEmpty()) {
-                String specialtyNameMessage = (errors.get("name") != null) ? "Name: " + errors.get("name") : "";
-                request.setAttribute("specialtyError", specialtyNameMessage);
-                request.getRequestDispatcher("/school/static/templates/specialtiesmenu.jsp").forward(request, response);
-                return;
+        // Perform validation
+        Map<String, String> errors = SpecialtyValidator.validate(specialtyInsertDTO);
+
+        // If there are validation errors, set them in the request and forward back to the form page
+        if (!errors.isEmpty()) {
+            String specialtyNameMessage = errors.get("name");
+            request.setAttribute("error", specialtyNameMessage);
+            request.getRequestDispatcher("/school/static/templates/specialtiesmenu.jsp").forward(request, response);
+        } else {
+            // If no errors, proceed with the insert operation and display success message
+            try {
+                Specialty specialty = specialtyService.insertSpecialty(specialtyInsertDTO);
+                request.setAttribute("insertedSpecialty", specialty);
+                request.getRequestDispatcher("/school/static/templates/specialtyInserted.jsp").forward(request, response);
+            } catch (SpecialtyDAOException e) {
+                // Handle database-related errors
+                request.setAttribute("sqlError", true);
+                request.setAttribute("message", e.getMessage());
+                request.getRequestDispatcher("/schoolapp/menu").forward(request, response);
             }
-
-            Specialty specialty = specialtyService.insertSpecialty(specialtyInsertDTO);
-
-            request.setAttribute("insertedSpecialty", specialty);
-            request.getRequestDispatcher("/school/static/templates/specialtyInserted.jsp").forward(request, response);
-        } catch (SpecialtyDAOException e) {
-            request.setAttribute("specialtySqlError", true);
-            request.setAttribute("specialtyMessage", e.getMessage());
-            request.getRequestDispatcher("/schoolapp/menu").forward(request, response);
         }
     }
 }

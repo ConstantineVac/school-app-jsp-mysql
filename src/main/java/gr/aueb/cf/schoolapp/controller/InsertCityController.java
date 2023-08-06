@@ -29,34 +29,34 @@ public class InsertCityController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("cityError", "");
+        request.setAttribute("error", "");
 
         String name = request.getParameter("name").trim();
 
-        // You can perform any additional validation or processing here as needed
-        // For example, check if the city name is not empty or exceeds a certain length
-
+        // Create the CityInsertDTO object
         CityInsertDTO cityInsertDTO = new CityInsertDTO();
         cityInsertDTO.setName(name);
 
-        try {
-            Map<String, String> errors = CityValidator.validate(cityInsertDTO);
-            if (!errors.isEmpty()) {
-                String cityNameMessage = (errors.get("name") != null) ? "Name: " + errors.get("name") : "";
-                request.setAttribute("cityError", cityNameMessage);
-                request.getRequestDispatcher("/school/static/templates/citiesmenu.jsp").forward(request, response);
-                return;
+        // Perform validation
+        Map<String, String> errors = CityValidator.validate(cityInsertDTO);
+
+        // If there are validation errors, set them in the request and forward back to the form page
+        if (!errors.isEmpty()) {
+            String cityNameMessage = errors.get("name");
+            request.setAttribute("error", cityNameMessage);
+            request.getRequestDispatcher("/school/static/templates/citiesmenu.jsp").forward(request, response);
+        } else {
+            // If no errors, proceed with the insert operation and display success message
+            try {
+                City city = cityService.insertCity(cityInsertDTO);
+                request.setAttribute("insertedCity", city);
+                request.getRequestDispatcher("/school/static/templates/cityInserted.jsp").forward(request, response);
+            } catch (CityDAOException e) {
+                // Handle database-related errors
+                request.setAttribute("sqlError", true);
+                request.setAttribute("message", e.getMessage());
+                request.getRequestDispatcher("/schoolapp/menu").forward(request, response);
             }
-
-
-            City city = cityService.insertCity(cityInsertDTO);
-
-            request.setAttribute("insertedCity", city);
-            request.getRequestDispatcher("/school/static/templates/cityInserted.jsp").forward(request, response);
-        } catch (CityDAOException e) {
-            request.setAttribute("citySqlError", true);
-            request.setAttribute("cityMessage", e.getMessage());
-            request.getRequestDispatcher("/schoolapp/menu").forward(request, response);
         }
     }
 }

@@ -15,7 +15,7 @@ public class SpecialtyValidator {
 
         String specialty = dto.getName();
         if (specialty == null || specialty.trim().isEmpty()) {
-            errors.put("specialty", "Specialty  must be provided.");
+            errors.put("name", "Specialty  must be provided.");
         }
 
         return errors;

@@ -32,39 +32,65 @@ public class InsertMeetingController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("error", "");
-
-        int teacherId = Integer.parseInt(request.getParameter("teacherId").trim());
-        int studentId = Integer.parseInt(request.getParameter("studentId").trim());
+        String teacherIdParam = request.getParameter("teacherId").trim();
+        String studentIdParam = request.getParameter("studentId").trim();
         String room = request.getParameter("room");
-        String meetingDate = (request.getParameter("meetingDate"));
+        String meetingDate = request.getParameter("meetingDate");
 
+        // Check if teacherId and studentId are provided
+        if (teacherIdParam.isEmpty() || studentIdParam.isEmpty()) {
+            request.setAttribute("error", "Teacher's ID and Student's ID are required fields");
+            request.getRequestDispatcher("/school/static/templates/meetingsmenu.jsp").forward(request, response);
+            return;
+        }
 
-        MeetingInsertDTO meetingInsertDTO = new MeetingInsertDTO();
-
-        meetingInsertDTO.setTeacherId(teacherId);
-        meetingInsertDTO.setStudentId(studentId);
-        meetingInsertDTO.setRoom(room);
-        meetingInsertDTO.setMeetingDate(Date.valueOf(meetingDate));
+        int teacherId = 0;
+        int studentId = 0;
 
         try {
-            Map<String, String> errors = MeetingValidator.validate(meetingInsertDTO);
-            if (!errors.isEmpty()) {
-                String teacherIdMessage = (errors.get("teacherId") != null) ? "Teacher's ID: " + errors.get("teacherId") : "";
-                String studentIdMessage = (errors.get("studentId") != null) ? "Student's ID: " + errors.get("studentId") : "";
-                String roomMessage = (errors.get("room") != null) ? "Room: " + errors.get("room") : "";
-                String meetingDateMessage = (errors.get("meetingDate") != null) ? "Meeting Date: " + errors.get("meetingDate") : "";
-                request.setAttribute("error", teacherIdMessage + " " + studentIdMessage + " ");
+            teacherId = Integer.parseInt(teacherIdParam);
+            studentId = Integer.parseInt(studentIdParam);
+
+            MeetingInsertDTO meetingInsertDTO = new MeetingInsertDTO();
+            meetingInsertDTO.setTeacherId(teacherId);
+            meetingInsertDTO.setStudentId(studentId);
+            meetingInsertDTO.setRoom(room);
+
+            // Validate the format of the meetingDate parameter
+            if (meetingDate == null || !meetingDate.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                request.setAttribute("error", "Invalid format for Meeting Date. Please use yyyy-mm-dd format.");
                 request.getRequestDispatcher("/school/static/templates/meetingsmenu.jsp").forward(request, response);
                 return;
             }
 
-            Meeting meeting = meetingService.insertMeeting(meetingInsertDTO);
-            request.setAttribute("insertedMeeting", meeting);
-            request.getRequestDispatcher("/school/static/templates/meetingInserted.jsp").forward(request, response);
-        } catch (MeetingDAOException e) {
-            request.setAttribute("sqlError", true);
-            request.setAttribute("message", e.getMessage());
-            request.getRequestDispatcher("/schoolapp/menu").forward(request, response);
+            meetingInsertDTO.setMeetingDate(Date.valueOf(meetingDate));
+
+            Map<String, String> errors = MeetingValidator.validate(meetingInsertDTO);
+
+            // If there are validation errors, concatenate them into one string and set in the request
+            if (!errors.isEmpty()) {
+                StringBuilder errorMessage = new StringBuilder();
+                for (String error : errors.values()) {
+                    errorMessage.append(error).append(" ");
+                }
+                request.setAttribute("error", errorMessage.toString());
+                request.getRequestDispatcher("/school/static/templates/meetingsmenu.jsp").forward(request, response);
+            } else {
+                // If no errors, proceed with the insert operation and display success message
+                try {
+                    Meeting meeting = meetingService.insertMeeting(meetingInsertDTO);
+                    request.setAttribute("insertedMeeting", meeting);
+                    request.getRequestDispatcher("/school/static/templates/meetingInserted.jsp").forward(request, response);
+                } catch (MeetingDAOException e) {
+                    request.setAttribute("sqlError", true);
+                    request.setAttribute("message", e.getMessage());
+                    request.getRequestDispatcher("/schoolapp/menu").forward(request, response);
+                }
+            }
+        } catch (NumberFormatException e) {
+            // Handle invalid integer inputs here
+            request.setAttribute("error", "Teacher's ID and Student's ID must be valid integers");
+            request.getRequestDispatcher("/school/static/templates/meetingsmenu.jsp").forward(request, response);
         }
     }
 }

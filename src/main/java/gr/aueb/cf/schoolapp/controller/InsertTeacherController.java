@@ -29,11 +29,31 @@ public class InsertTeacherController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("error", "");
+        request.setCharacterEncoding("UTF-8"); // Set character encoding to properly handle non-ASCII characters in the request
 
         String firstname = request.getParameter("firstname").trim();
         String lastname = request.getParameter("lastname").trim();
-        int specialtyId = Integer.parseInt(request.getParameter("specialtyId").trim());
+        String specialtyIdParam = request.getParameter("specialtyId").trim();
+
+
+
+        // Perform server-side validation
+        if (firstname.isEmpty() || lastname.isEmpty() || specialtyIdParam.isEmpty()) {
+            request.setAttribute("error", "All fields are required.");
+            request.getRequestDispatcher("/school/static/templates/teachersmenu.jsp").forward(request, response);
+            return;
+        }
+
+        int specialtyId;
+
+        try {
+            specialtyId = Integer.parseInt(specialtyIdParam);
+        } catch (NumberFormatException e) {
+            // Handle invalid integer input for specialtyId here
+            request.setAttribute("error", "Specialty ID must be a valid integer");
+            request.getRequestDispatcher("/school/static/templates/teachersmenu.jsp").forward(request, response);
+            return;
+        }
 
         TeacherInsertDTO teacherInsertDTO = new TeacherInsertDTO();
         teacherInsertDTO.setFirstname(firstname);
@@ -43,10 +63,11 @@ public class InsertTeacherController extends HttpServlet {
         try {
             Map<String, String> errors = TeacherValidator.validate(teacherInsertDTO);
             if (!errors.isEmpty()) {
-                String firstnameMessage = (errors.get("firstname") != null) ? "Firstname: " + errors.get("firstname") : "";
-                String lastnameMessage = (errors.get("lastname") != null) ? "Lastname: " + errors.get("lastname") : "";
-                String specialtyIdMessage = (errors.get("specialtyId") != null) ? "Specialty ID: " + errors.get("specialtyiD") : "";
-                request.setAttribute("error", firstnameMessage + " " + lastnameMessage + " " + specialtyIdMessage);
+                StringBuilder errorMessage = new StringBuilder();
+                for (String field : errors.keySet()) {
+                    errorMessage.append(field).append(": ").append(errors.get(field)).append(" ");
+                }
+                request.setAttribute("error", errorMessage.toString());
                 request.getRequestDispatcher("/school/static/templates/teachersmenu.jsp").forward(request, response);
                 return;
             }

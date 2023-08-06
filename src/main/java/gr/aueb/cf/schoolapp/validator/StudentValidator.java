@@ -58,6 +58,13 @@ public class StudentValidator {
             }
         }
 
+        Integer cityId = dto.getCityId();
+        if (cityId == null) {
+            errors.put("cityId", "CityId must be provided.");
+        } else if (cityId < 1) { // assuming cityId starts from 1
+            errors.put("cityId", "CityId must be valid.");
+        }
+
         return errors;
     }
 
@@ -98,6 +105,13 @@ public class StudentValidator {
             if (age < 6 || age > 99) {
                 errors.put("birthdate", "Age must be between 6 and 99 years old.");
             }
+        }
+
+        Integer cityId = dto.getCityId();
+        if (cityId == null) {
+            errors.put("cityId", "CityId must be provided.");
+        } else if (cityId < 1) { // assuming cityId starts from 1
+            errors.put("cityId", "CityId must be valid.");
         }
 
         return errors;
