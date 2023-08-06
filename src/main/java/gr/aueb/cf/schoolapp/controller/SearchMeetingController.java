@@ -7,6 +7,7 @@ import gr.aueb.cf.schoolapp.model.Meeting;
 import gr.aueb.cf.schoolapp.service.ICityService;
 import gr.aueb.cf.schoolapp.service.IMeetingService;
 import gr.aueb.cf.schoolapp.service.MeetingServiceImpl;
+import gr.aueb.cf.schoolapp.service.exceptions.MeetingNotFoundException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,7 +45,7 @@ public class SearchMeetingController extends HttpServlet {
                 request.getRequestDispatcher("/school/static/templates/meetings.jsp")
                         .forward(request, response);
             }
-        } catch (MeetingDAOException e) {
+        } catch (MeetingDAOException | MeetingNotFoundException e) {
             String message = e.getMessage();
             request.setAttribute("sqlError", true);
             request.setAttribute("message", message);

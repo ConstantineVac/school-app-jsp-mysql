@@ -4,6 +4,7 @@ import gr.aueb.cf.schoolapp.dao.exceptions.MeetingDAOException;
 import gr.aueb.cf.schoolapp.model.Meeting;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IMeetingDAO {
 
@@ -13,7 +14,7 @@ public interface IMeetingDAO {
 
     void delete(int id) throws MeetingDAOException;
 
-    List<Meeting> getByRoom(String room) throws MeetingDAOException;
+    Optional<List> getByRoom(String room) throws MeetingDAOException;
 
     Meeting getById(int id) throws MeetingDAOException;
 }

@@ -6,6 +6,7 @@ import gr.aueb.cf.schoolapp.dao.UserDAOImpl;
 import gr.aueb.cf.schoolapp.dao.exceptions.UserDAOException;
 import gr.aueb.cf.schoolapp.dto.UserLoginDTO;
 import gr.aueb.cf.schoolapp.model.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,10 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,19 +41,6 @@ public class LoginController extends HttpServlet {
         String password = request.getParameter("password");
 
         UserLoginDTO userLoginDTO = new UserLoginDTO(username, password);
-
-        // First, check if the user is already registered in the database
-        IUserDAO userDAO = new UserDAOImpl();
-        boolean isUserRegistered = userDAO.isUserRegistered(username);
-
-        if (!isUserRegistered) {
-            // If the username is not found in the database, set isRegistered to 'false'
-            request.setAttribute("isRegistered", "false");
-            request.getRequestDispatcher("/school/static/templates/login.jsp").forward(request, response);
-            return;
-        }
-
-        // Now authenticate the user
         boolean principleIsAuthenticated = AuthenticationProvider.authenticate(userLoginDTO);
 
         if (principleIsAuthenticated) {

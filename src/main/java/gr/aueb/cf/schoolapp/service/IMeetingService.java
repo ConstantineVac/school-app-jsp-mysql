@@ -12,6 +12,6 @@ public interface IMeetingService {
     Meeting insertMeeting(MeetingInsertDTO dto) throws MeetingDAOException;
     Meeting updateMeeting(MeetingUpdateDTO dto) throws MeetingDAOException, MeetingNotFoundException;
     void deleteMeeting(int id) throws MeetingDAOException, MeetingNotFoundException;
-    List<Meeting> getMeetingByRoom(String room) throws MeetingDAOException;
+    List<Meeting> getMeetingByRoom(String room) throws MeetingDAOException, MeetingNotFoundException;
     Meeting getMeetingById(int id) throws MeetingDAOException, MeetingNotFoundException;
 }

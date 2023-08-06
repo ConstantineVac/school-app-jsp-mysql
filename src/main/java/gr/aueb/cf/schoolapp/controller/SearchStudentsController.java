@@ -32,7 +32,6 @@ public class SearchStudentsController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //response.setContentType("text/html; charset=UTF-8");
         String lastname = request.getParameter("lastname").trim();
 
         try {

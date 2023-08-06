@@ -1,6 +1,8 @@
 package gr.aueb.cf.schoolapp.dto;
 
-public class UserInsertDTO {
+import gr.aueb.cf.schoolapp.model.User;
+
+public class UserInsertDTO extends User {
     private String username;
     private String password;
 

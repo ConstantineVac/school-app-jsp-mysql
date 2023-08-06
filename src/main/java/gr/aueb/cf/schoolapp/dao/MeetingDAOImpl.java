@@ -1,9 +1,7 @@
 package gr.aueb.cf.schoolapp.dao;
 
 import gr.aueb.cf.schoolapp.dao.exceptions.MeetingDAOException;
-import gr.aueb.cf.schoolapp.dao.exceptions.StudentDAOException;
 import gr.aueb.cf.schoolapp.model.Meeting;
-import gr.aueb.cf.schoolapp.model.Student;
 import gr.aueb.cf.schoolapp.service.util.DBUtil;
 
 import java.sql.Connection;
@@ -12,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class MeetingDAOImpl implements  IMeetingDAO{
 
@@ -108,7 +107,7 @@ public class MeetingDAOImpl implements  IMeetingDAO{
     }
 
     @Override
-    public List<Meeting> getByRoom(String room) throws MeetingDAOException {
+    public Optional<List> getByRoom(String room) throws MeetingDAOException {
         String sql = "SELECT * FROM MEETINGS WHERE MEETING_ROOM LIKE ?";
         List<Meeting> meetings = new ArrayList<>();
 
@@ -126,7 +125,12 @@ public class MeetingDAOImpl implements  IMeetingDAO{
         } catch (SQLException e1) {
             e1.printStackTrace();
         }
-        return meetings;
+
+        if (meetings.isEmpty()) {
+            return Optional.empty();
+        } else {
+            return Optional.of(meetings);
+        }
     }
 
     @Override

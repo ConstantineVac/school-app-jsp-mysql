@@ -1,12 +1,14 @@
 package gr.aueb.cf.schoolapp.service.exceptions;
 
+import gr.aueb.cf.schoolapp.dao.exceptions.UserDAOException;
 import gr.aueb.cf.schoolapp.model.User;
 
-public class UserNotFoundException extends Exception{
-
-    public UserNotFoundException(User user) {
-        super("User with username " + user.getUsername() + " does not exist");
+public class UserNotFoundException extends Exception {
+    public UserNotFoundException(String message) {
+        super(message);
     }
 
-    public UserNotFoundException(String s) {super(s);}
+    public UserNotFoundException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

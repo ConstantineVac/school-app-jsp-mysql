@@ -2,13 +2,16 @@ package gr.aueb.cf.schoolapp.service;
 
 import gr.aueb.cf.schoolapp.dao.IMeetingDAO;
 import gr.aueb.cf.schoolapp.dao.exceptions.MeetingDAOException;
+import gr.aueb.cf.schoolapp.dao.exceptions.StudentDAOException;
 import gr.aueb.cf.schoolapp.dto.MeetingInsertDTO;
 import gr.aueb.cf.schoolapp.dto.MeetingUpdateDTO;
 import gr.aueb.cf.schoolapp.model.Meeting;
 import gr.aueb.cf.schoolapp.service.exceptions.MeetingNotFoundException;
+import gr.aueb.cf.schoolapp.service.exceptions.TeacherNotFoundException;
 
 
 import java.util.List;
+import java.util.Optional;
 
 public class MeetingServiceImpl implements IMeetingService {
     private final IMeetingDAO meetingDAO;
@@ -66,13 +69,19 @@ public class MeetingServiceImpl implements IMeetingService {
     }
 
     @Override
-    public List<Meeting> getMeetingByRoom(String room) throws MeetingDAOException {
-        List<Meeting> meetings;
+    public List<Meeting> getMeetingByRoom(String room) throws MeetingDAOException, MeetingNotFoundException {
+        if (room == null) {
+            throw new IllegalArgumentException("Class Room cannot be null");
+        }
 
         try {
-            meetings = meetingDAO.getByRoom(room);
-            return meetings;
-        } catch (MeetingDAOException e) {
+            Optional<List> meetingsOptional = meetingDAO.getByRoom(room);
+            if (!meetingsOptional.isPresent()) {
+                throw new MeetingNotFoundException("No Meetings found in: " + room);
+            }
+            return meetingsOptional.get();
+
+        }catch (MeetingDAOException | MeetingNotFoundException  e) {
             e.printStackTrace();
             throw e;
         }

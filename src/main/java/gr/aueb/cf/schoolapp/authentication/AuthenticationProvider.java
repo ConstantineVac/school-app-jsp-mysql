@@ -13,10 +13,21 @@ public class AuthenticationProvider {
     private AuthenticationProvider() {}
 
     public static boolean authenticate(UserLoginDTO userLoginDTO) {
-        //System.out.println("authenticate" + userLoginDTO.getUsername());
-        if (userLoginDTO.getUsername().equals("test@aueb.gr")) {
-            return false;
+        // Validate authentication
+        try {
+            return userDAO.isUserValid(userLoginDTO.getUsername(), userLoginDTO.getPassword());
+        } catch (UserDAOException e) {
+            throw new RuntimeException(e);
         }
-        return userDAO.isUserValid(userLoginDTO.getUsername(), userLoginDTO.getPassword());
+    }
+
+    public static boolean register(UserLoginDTO userLoginDTO) {
+        // Create a new User and register it
+        User newUser = new User(userLoginDTO.getUsername(), userLoginDTO.getPassword());
+        try {
+            return userDAO.registerUser(newUser);
+        } catch (UserDAOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

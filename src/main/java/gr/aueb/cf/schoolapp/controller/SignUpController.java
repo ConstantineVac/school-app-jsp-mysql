@@ -3,7 +3,10 @@ package gr.aueb.cf.schoolapp.controller;
 import gr.aueb.cf.schoolapp.dao.IUserDAO;
 import gr.aueb.cf.schoolapp.dao.UserDAOImpl;
 import gr.aueb.cf.schoolapp.dao.exceptions.UserDAOException;
-import gr.aueb.cf.schoolapp.model.User;
+import gr.aueb.cf.schoolapp.dto.UserInsertDTO;
+import gr.aueb.cf.schoolapp.service.IUserService;
+import gr.aueb.cf.schoolapp.service.exceptions.UserNotFoundException;
+import gr.aueb.cf.schoolapp.service.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,19 +17,20 @@ import java.io.IOException;
 
 @WebServlet("/signup")
 public class SignUpController extends HttpServlet {
-    private IUserDAO userDAO; // Declare the IUserDAO reference
+    private final IUserService userService;
+    private final IUserDAO userDAO = new UserDAOImpl();
 
-    // Override the init method to perform dependency injection
-    @Override
-    public void init() throws ServletException {
-        super.init();
-        userDAO = new UserDAOImpl(); // Instantiate the DAO implementation here
+    public SignUpController() {
+        this.userService = new UserServiceImpl(userDAO);
+    }
+
+    public SignUpController(IUserService userService) {
+        this.userService = userService;
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Display the signup form (signup.jsp)
         request.getRequestDispatcher("/school/static/templates/signup.jsp").forward(request, response);
     }
 
@@ -36,21 +40,22 @@ public class SignUpController extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        // Validate the form data (you can add more validation if needed)
+        UserInsertDTO userDTO = new UserInsertDTO(username, password);
 
-        // Assuming you have a method to register the user in the database, similar to UserDAO.createUser()
-        User newUser = new User(username, password); // You can set the email to null or get it from the request
-
+        boolean registrationResult = false;
         try {
-            // Register the user in the database
-            userDAO.createUser(newUser);
+            registrationResult = userService.registerUser(userDTO);
+        } catch (UserNotFoundException | UserDAOException e) {
+            // Handle the exception gracefully
+            request.setAttribute("errorMessage", "Error registering user: " + e.getMessage());
+            request.getRequestDispatcher("/school/static/templates/signup.jsp").forward(request, response);
+            return;
+        }
 
-            // Redirect to the menu page after successful registration
-            response.sendRedirect(request.getContextPath() + "/schoolapp/menu");
-        } catch (UserDAOException e) {
-            // Handle registration errors
-            e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/signup?error=true");
+        if (registrationResult) {
+            response.sendRedirect(request.getContextPath() + "/login");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/signup?isError=true");
         }
     }
 }
