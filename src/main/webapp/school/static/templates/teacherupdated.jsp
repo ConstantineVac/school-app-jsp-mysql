@@ -17,7 +17,7 @@
 	<p>${requestScope.message}</p>
 	<br>
 	<div class="container"> <!-- Add the container -->
-		<a href="${pageContext.request.contextPath}/school/static/templates/teachersmenu.jsp">Return</a>
+		<a href="${pageContext.request.contextPath}/schoolapp/teacherInsert">Return</a>
 	</div>
 </body>
 </html>

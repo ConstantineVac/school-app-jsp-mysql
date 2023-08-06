@@ -20,7 +20,7 @@
 </div>
 
 <div>
-  <a href="${pageContext.request.contextPath}/school/static/templates/studentsmenu.jsp">Go Back</a>
+  <a href="${pageContext.request.contextPath}/schoolapp/studentInsert">Go Back</a>
 </div>
 </body>
 </html>

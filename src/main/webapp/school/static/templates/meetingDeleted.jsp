@@ -13,7 +13,7 @@
 
 <p>Meeting: ${requestScope.meetingDTO.id} ${requestScope.meetingDTO.teacherId} ${requestScope.meetingDTO.studentId} ${requestScope.meetingDTO.room} ${requestScope.meetingDTO.meetingDate}
   was deleted</p>
-<a href="${pageContext.request.contextPath}/school/static/templates/meetingsmenu.jsp">Go Back</a>
+<a href="${pageContext.request.contextPath}/schoolapp/insertMeeting">Go Back</a>
 </div>
 </body>
 </html>

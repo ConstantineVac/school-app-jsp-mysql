@@ -11,6 +11,6 @@
 <body>
 	<p>Teacher: ${requestScope.teacherDTO.id} ${requestScope.teacherDTO.firstname} ${requestScope.teacherDTO.lastname} ${requestScope.teacherDTO.specialtyId}
 		was deleted</p>
-	<a href="${pageContext.request.contextPath}/school/static/templates/teachersmenu.jsp">Go Back</a>
+	<a href="${pageContext.request.contextPath}/schoolapp/teacherInsert">Go Back</a>
 </body>
 </html>

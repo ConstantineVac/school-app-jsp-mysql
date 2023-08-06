@@ -12,7 +12,7 @@
 
   <p>Student: ${requestScope.studentDTO.id} ${requestScope.studentDTO.firstname} ${requestScope.studentDTO.lastname} ${requestScope.studentDTO.cityId}
         was deleted</p>
-  <a href="${pageContext.request.contextPath}/school/static/templates/studentsmenu.jsp">Go Back</a>
+  <a href="${pageContext.request.contextPath}/schoolapp/studentInsert">Go Back</a>
 </div>
 </body>
 </html>
