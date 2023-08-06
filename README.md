@@ -94,7 +94,7 @@ The School App Pro is built using the following technologies:
 
 1. Clone the School App Pro repository to your local machine.
 2. Set up a MySQL database and import the provided SQL schema to create the necessary tables.
-  - [Download DB Schema]()
+    - [Download DB Schema]()
 4. Configure the database connection details in the application's configuration files.
 5. Deploy the application on a Java web server (e.g., Apache Tomcat).
 
@@ -111,7 +111,8 @@ The School App Pro is currently under development, and some features are yet to 
 
 
 ## Contributions
-[Bill Maziotis](https://github.com/billmazio).
+- [Bill Maziotis](https://github.com/billmazio).
+ 
 Contributions to the School App Pro project are welcome. If you encounter any issues or have ideas for improvement, please submit an issue or a pull request on the project's repository.
 
 ---
