@@ -46,38 +46,57 @@ The School App Pro provides the following features:
 ![image](https://github.com/ConstantineVac/school-app-jsp-mysql/assets/108877593/e77db3e7-16f3-4ca1-8ddc-9a49891a906f)
 
 ### Students Management
+- User admins can add new students to the system.
+---
+![image](https://github.com/ConstantineVac/school-app-jsp-mysql/assets/108877593/53fc8355-ae92-4ce9-9852-70784f3714c3)
 
 - User admins can view a list of all students enrolled in the school.
-- They can add new students to the system.
 - User admins have the ability to update student information (e.g., first name, last name, gender).
 - They can remove students from the system if needed.
+---
+![image](https://github.com/ConstantineVac/school-app-jsp-mysql/assets/108877593/81fcd66a-d840-4584-b2cf-79d8cbff0cf4)
+
 
 ### Cities Management
+- User admins can add new cities to the system.
+---
+![image](https://github.com/ConstantineVac/school-app-jsp-mysql/assets/108877593/1a655a6a-111d-438a-9631-88989a636696)
 
 - User admins can view a list of all cities where the school operates.
-- They can add new cities to the system.
 - User admins can update city information (e.g., city name).
 - They can delete cities from the system.
+---
+![image](https://github.com/ConstantineVac/school-app-jsp-mysql/assets/108877593/a8e4b011-a1ce-415d-9a21-d0081ae92ad2)
+
 
 ### Specialties Management
 
-- Although currently not implemented, the School App Pro is designed to include specialties management in the future.
-- User admins will be able to view, add, update, and delete specialties for teachers and students.
+- User admins can add new specialties to the system.
+---
+![image](https://github.com/ConstantineVac/school-app-jsp-mysql/assets/108877593/fa9b6282-d8cb-4df4-9e5a-4a95c254f612)
+
+- User admins can view a list of all specialties of all tutors working at the school.
+- User admins can update specialty information (e.g., specialty name).
+- They can delete specialties from the system.
+---
+![image](https://github.com/ConstantineVac/school-app-jsp-mysql/assets/108877593/70d94ffc-e33b-439c-94a2-62602e326350)
+
 
 ## Technologies Used
 
 The School App Pro is built using the following technologies:
 
 - Front-end: HTML, CSS, JavaScript
-- Back-end: Java with Servlets and JSP (JavaServer Pages)
+- Back-end: Java with Servlets and JSP (JavaServer Pages) - Java Jakarta.
 - Database: MySQL for storing user admin credentials and school-related data
 
 ## Installation
 
 1. Clone the School App Pro repository to your local machine.
 2. Set up a MySQL database and import the provided SQL schema to create the necessary tables.
-3. Configure the database connection details in the application's configuration files.
-4. Deploy the application on a Java web server (e.g., Apache Tomcat).
+  - [Download DB Schema]()
+4. Configure the database connection details in the application's configuration files.
+5. Deploy the application on a Java web server (e.g., Apache Tomcat).
 
 ## Usage
 
@@ -88,14 +107,11 @@ The School App Pro is built using the following technologies:
 
 ## Status
 
-The School App Pro is currently under development, and some features (e.g., specialties management) are yet to be implemented. However, the existing functionalities are functional and can be used by user admins for basic management tasks.
+The School App Pro is currently under development, and some features are yet to be implemented. However, the existing functionalities are functional and can be used by user admins for basic management tasks.
 
-## License
-
-The School App Pro is an open-source project and is distributed under the [MIT License](LICENSE). Feel free to use, modify, and distribute the application as per the terms of the license.
 
 ## Contributions
-
+[Bill Maziotis](https://github.com/billmazio).
 Contributions to the School App Pro project are welcome. If you encounter any issues or have ideas for improvement, please submit an issue or a pull request on the project's repository.
 
 ---
